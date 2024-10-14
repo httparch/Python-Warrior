@@ -25,10 +25,12 @@ var Enemy = function () {
   module.setHealth = function (health) {
     this.health = health
   }
-
+  /**
+   * attack(): Plays an attack sound and calculates the attack coordinate based on the enemy's direction. It then calls the Map.attack() function to deal damage at the calculated coordinate.
+   */
   module.attack = function () {
-    var audio = new Audio('assets/sounds/rawr.mp3')
-    audio.play()
+    //var audio = new Audio('assets/sounds/rawr.mp3')
+    //audio.play()
     var coord = this.x
     switch (this.direction) {
       case 'LEFT':

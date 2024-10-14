@@ -1,39 +1,53 @@
-html{
-  background: #e6d48d;
+html {
+  background: #181818; /* Dark background for the entire page */
   font-family: Helvetica, Arial, Sans-Serif !important;
+}
+p {
+  color: white;
+}
+
+#level,
+#hint {
+  color: white;
 }
 
 .character-image {
-  height: 150px;
+  height: 150px; /* Keep the character image height */
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: none; /* Keep the same behavior on hover */
+  color: #f0f0f0; /* Light color for links on hover */
 }
 
-.level, .skin, .modal {
-  background: #dfd2a4;
-  border: 1px solid rgba(255,255,255,0.3);
-  cursor: pointer;
-}
-.level:hover, .skin:hover, .active {
-  background: #ecdeae !important;
-}
-
-button {
-  border: 0.5px solid rgb(145, 145, 145) !important;
+.level,
+.skin,
+.modal {
+  background: #474747; /* Dark background for levels, skins, and modals */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for contrast */
+  cursor: pointer; /* Pointer on hover */
 }
 
-#code{
-  color: wheat;
-  background: #4d462b;
-  border: 1px solid #dfd2a4;
-  font-size: 15px;
+.level:hover,
+.skin:hover,
+.active {
+  background: #3a3a3a !important; /* Slightly lighter background on hover */
 }
 
-#console-log-div{
-  font-family: "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace;
-  overflow-y: scroll;
-  color: white;
-  background: black;
+#code {
+  color: #e0e0e0; /* Light text color for code */
+  background: #2a2a2a; /* Dark background for code */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for code */
+  font-size: 15px; /* Keep the same font size */
+  padding: 10px; /* Add padding for better readability */
+  border-radius: 4px; /* Slightly rounded corners for aesthetics */
+}
+
+#console-log-div {
+  font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
+  overflow-y: scroll; /* Keep scroll behavior */
+  color: #f0f0f0; /* Light text color for console logs */
+  background: #1a1a1a; /* Darker background for console logs */
+  padding: 10px; /* Add padding for better readability */
+  border-radius: 4px; /* Slightly rounded corners for aesthetics */
 }

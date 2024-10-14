@@ -1,5 +1,5 @@
-Szedd fel az összes pénzt, és juss el a kijárathoz!<br>
-A megoldáshoz egy rövid programot kell írnotok.<br>
-A ciklust megírtuk helyettetek, a kódotok addig fut, amíg nem nyertek (vagy el nem éritek a körök limitjét).<br>
-Ez a pálya nem fog gondot okozni:<br>
-Nincs semmi az útban, úgyhogy csak adjátok ki a <code>Player.walk();</code> utasítást a mozgáshoz.
+Collect all the coins and get to the exit!<br>
+You have to write a short program for the solution.<br>
+We wrote the cycle for you, your code runs until you win (or reach the limit of rounds).<br>
+This track won't cause any problems:<br>
+There's nothing in the way, so just issue <code>Player.walk();</code> to move.

@@ -1,7 +1,7 @@
-Megjelent előttetek egy ellenség!<br>
-Ahhoz, hogy elérjétek a kijáratot, meg kell küzdened vele! (Ne aggódjatok, erősebbek vagytok nála)<br>
-A támadáshoz a <code>Player.attack();</code> függvényt kell meghívnotok<br>
-Azt, hogy mi van előttetek, a <code>Player.getNext();</code> függvénnyel tudhatjátok meg. ("e" -t ad vissza, hogyha ellenség)<br>
-Ha még nem nagyon írtatok javascript kódot, itt van még egy kis segítség az elágazásokról:<br>
-<code>if(function() == "valami"){ (...); }
+An enemy has appeared before you!<br>
+In order to reach the exit, you have to fight him! (Don't worry, you are stronger than him)<br>
+To attack, you must call the <code>Player.attack();</code> function<br>
+You can find out what is in front of you with the <code>Player.getNext();</code> function. (returns "e" if enemy)<br>
+If you haven't written much javascript code yet, here's a little help about branching:<br>
+<code>if(function() == "something"){ (...); }
 else { (...); }</code>

@@ -35,14 +35,16 @@ var Player = (function () {
     return this.health
   }
 
+  //walk(): Moves the player in the current direction if they can perform actions and if movement is allowed.
+  //Logs messages  if certain conditions are not met.
   module.walk = function () {
     if (!this.canPerformAction) {
-      console.log('Egy korben csak egy akciot tudsz vegrehajtani!')
+      console.log('You can only run one promotion at a time')
       return
     }
     this.canPerformAction = false
     if (!this.canMove && this.direction === 'RIGHT') {
-      console.log('Nem tudsz továbbmenni')
+      console.log('You cant go any further')
       return
     }
 
@@ -63,7 +65,8 @@ var Player = (function () {
         break
     }
   }
-
+  //checkNextField(map): Checks the next field in the direction the player is facing,
+  // returning the element found or indicating it's an empty field.
   module.checkNextField = function (map) {
     var offset = 0
     switch (this.direction) {
@@ -85,7 +88,7 @@ var Player = (function () {
 
     return returnValue
   }
-
+  //openChest(): Checks the next field and opens a chest if it's present.
   module.openChest = function () {
     var offset = 0
     switch (this.direction) {
@@ -101,7 +104,7 @@ var Player = (function () {
 
     this.checkNextField(Map.map).open()
   }
-
+  // getNext(): Returns the type of the next field based on the player's current direction.
   module.getNext = function () {
     var offset = 0
     switch (this.direction) {
@@ -123,7 +126,7 @@ var Player = (function () {
     })
     return returnValue
   }
-
+  //getChestDistance(): Calculates the distance to the nearest chest, adjusting the value based on the player’s direction.
   module.getChestDistance = function () {
     var distance = 0
     Map.map.forEach(function (element) {
@@ -136,15 +139,16 @@ var Player = (function () {
     }
     return distance
   }
-
+  //attack(): Executes an attack in the current direction, playing a sound effect
+  // and dealing damage to an enemy in that direction if the player can perform an action.
   module.attack = function () {
     if (!this.canPerformAction) {
-      console.log('Egy korben csak egy akciot tudsz vegrehajtani!')
+      console.log('You can only run one promotion at a time')
       return
     }
     this.canPerformAction = false
-    var audio = new Audio('assets/sounds/sword.mp3')
-    audio.play()
+    //var audio = new Audio('assets/sounds/sword.mp3')
+    //audio.play()
     var coord = this.x
     switch (this.direction) {
       case 'LEFT':

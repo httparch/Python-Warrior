@@ -1,5 +1,6 @@
 var Map = (function () {
   var module = {}
+  //An array that represents the game map and stores different elements (e.g., player, enemies, items).
   var map = []
   var blocksEnum = {
     WALL: 'w',
@@ -8,6 +9,14 @@ var Map = (function () {
     WARRIOR: 'p',
     SPACE: 's'
   }
+
+  /**
+   *
+   * parseLevel(contents): Takes a string contents representing the level layout and parses it character by character. Depending on the character encountered:
+      Creates a new Player, Ruby, Gate, Chest, or Enemy and initializes it with coordinates.
+      Pushes the initialized object onto the map array.
+      Handles a space character ('s') by pushing an object representing empty space onto the map.
+   */
 
   module.parseLevel = function (contents) {
     for (var index = 0; index < contents.length; index++) {
@@ -46,6 +55,11 @@ var Map = (function () {
       }
     }
   }
+  /**
+   * attack(coord, dmg): Iterates through the map array to find an element at the specified coordinate.
+   * If found, it reduces the health of that element by dmg.
+   * If health drops to zero or below, the element is removed from the map.
+   */
 
   module.attack = function (coord, dmg) {
     map.forEach(function (element, index) {

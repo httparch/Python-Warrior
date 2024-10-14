@@ -1,8 +1,1 @@
-Vajon mit rejthet a láda? Csak nem a nyeréshez szükséges aranyat?<br>
-Új függvények, amire szükségetek lesz a pályához:<br>
-A játékos irányának megváltoztatása: <code>Player.setDir("LEFT") // vagy "RIGHT" értelemszerűen</code><br>
-A láda kinyitása: <code>Player.openChest() // hogyha egy távolságra vagytok tőle</code><br>
-A láda távolságának kiderítése a játékostól (ha előttetek van: pozitív; ha mögöttetek: negatív; ha ki van nyitva: 0): <code>Player.getChestDistance()</code><br>
-Lehet, hogy összetettebb feltételeket is vizsgálnotok kell majd (de lehet, hogy ezek nélkül is meg tudjátok oldani):<br>
-<code>if(a || b) // vagy </code><br>
-<code>if(a && b) // és </code><br>
+What could the chest be hiding? Could it be the gold needed to win?<br> New functions that you will need for the level:<br> Change the player's direction: <code>Player.setDir("LEFT") // or "RIGHT" accordingly</code><br> Open the chest: <code>Player.openChest() // if you are within range</code><br> Determine the distance of the chest from the player (if it's in front of you: positive; if it's behind you: negative; if it's open: 0): <code>Player.getChestDistance()</code><br> You may need to check more complex conditions (but you might be able to solve it without them):<br> <code>if(a || b) // or</code><br> <code>if(a && b) // and</code><br>
