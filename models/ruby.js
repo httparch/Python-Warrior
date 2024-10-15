@@ -16,3 +16,4 @@ var Ruby = function () {
   module.name = 'r'
   return module
 }
+//coin
