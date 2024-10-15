@@ -8,7 +8,7 @@ var Player = (function () {
   var canMove
   var canPerformAction
 
-  module.name = 'p'
+  module.name = "p"
 
   module.constructor = function (x, y, direction, health) {
     this.x = x
@@ -39,26 +39,26 @@ var Player = (function () {
   //Logs messages  if certain conditions are not met.
   module.walk = function () {
     if (!this.canPerformAction) {
-      console.log('You can only run one promotion at a time')
+      console.log("You can only run one promotion at a time")
       return
     }
     this.canPerformAction = false
-    if (!this.canMove && this.direction === 'RIGHT') {
-      console.log('You cant go any further')
+    if (!this.canMove && this.direction === "RIGHT") {
+      console.log("You cant go any further")
       return
     }
 
     switch (this.direction) {
-      case 'UP':
+      case "UP":
         this.y++
         break
-      case 'DOWN':
+      case "DOWN":
         this.y--
         break
-      case 'LEFT':
+      case "LEFT":
         this.x--
         break
-      case 'RIGHT':
+      case "RIGHT":
         this.x++
         break
       default:
@@ -70,26 +70,26 @@ var Player = (function () {
   module.skipWall = function (map) {
     var nextField = this.getNext(map)
 
-    if (nextField === 'w') {
+    if (nextField === "w") {
       switch (this.direction) {
-        case 'UP':
+        case "UP":
           this.y += 3
           break
-        case 'DOWN':
+        case "DOWN":
           this.y -= 3
           break
-        case 'LEFT':
+        case "LEFT":
           this.x -= 3
           break
-        case 'RIGHT':
-          console.log('here')
+        case "RIGHT":
+          console.log("here")
           this.x += 3
           break
         default:
           break
       }
     } else {
-      console.log('No wall to skip')
+      console.log("No wall to skip")
     }
   }
 
@@ -98,16 +98,16 @@ var Player = (function () {
   module.checkNextField = function (map) {
     var offset = 0
     switch (this.direction) {
-      case 'LEFT':
+      case "LEFT":
         offset--
         break
-      case 'RIGHT':
+      case "RIGHT":
         offset++
         break
       default:
         break
     }
-    var returnValue = 'empty field'
+    var returnValue = "empty field"
     map.forEach(function (element) {
       if (element.x === Player.getX() + offset) {
         returnValue = element
@@ -118,12 +118,13 @@ var Player = (function () {
   }
   //openChest(): Checks the next field and opens a chest if it's present.
   module.openChest = function () {
+    console.log("opened")
     var offset = 0
     switch (this.direction) {
-      case 'LEFT':
+      case "LEFT":
         offset--
         break
-      case 'RIGHT':
+      case "RIGHT":
         offset++
         break
       default:
@@ -136,17 +137,17 @@ var Player = (function () {
   module.getNext = function () {
     var offset = 0
     switch (this.direction) {
-      case 'LEFT':
+      case "LEFT":
         offset--
         break
-      case 'RIGHT':
+      case "RIGHT":
         offset++
         break
       default:
         break
     }
 
-    var returnValue = 's'
+    var returnValue = "s"
     Map.map.forEach(function (element) {
       if (element.x === Player.getX() + offset) {
         returnValue = element.name
@@ -158,11 +159,11 @@ var Player = (function () {
   module.getChestDistance = function () {
     var distance = 0
     Map.map.forEach(function (element) {
-      if (element.name === 'c') {
+      if (element.name === "c") {
         distance = Player.x - element.x
       }
     })
-    if (Player.direction === 'RIGHT') {
+    if (Player.direction === "RIGHT") {
       distance *= -1
     }
     return distance
@@ -171,7 +172,7 @@ var Player = (function () {
   // and dealing damage to an enemy in that direction if the player can perform an action.
   module.attack = function () {
     if (!this.canPerformAction) {
-      console.log('You can only run one promotion at a time')
+      console.log("You can only run one promotion at a time")
       return
     }
     this.canPerformAction = false
@@ -179,10 +180,10 @@ var Player = (function () {
     //audio.play()
     var coord = this.x
     switch (this.direction) {
-      case 'LEFT':
+      case "LEFT":
         coord--
         break
-      case 'RIGHT':
+      case "RIGHT":
         coord++
         break
       default:

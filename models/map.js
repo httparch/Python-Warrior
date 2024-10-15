@@ -3,13 +3,14 @@ var Map = (function () {
   //An array that represents the game map and stores different elements (e.g., player, enemies, items).
   var map = []
   var blocksEnum = {
-    WALL: 'w',
-    RUBY: 'r',
-    ENEMY: 'e',
-    WARRIOR: 'p',
-    SPACE: 's',
-    SCORPION: 'm',
-    SNAKE: 'n'
+    WALL: "w",
+    RUBY: "r",
+    ENEMY: "e",
+    WARRIOR: "p",
+    SPACE: "s",
+    SCORPION: "m",
+    SNAKE: "n",
+    CHEST: "c",
   }
 
   /**
@@ -24,50 +25,50 @@ var Map = (function () {
     for (var index = 0; index < contents.length; index++) {
       var char = contents.charAt(index)
       switch (char) {
-        case 'p':
-          Player.constructor(index, 4, 'RIGHT', 100)
+        case "p":
+          Player.constructor(index, 4, "RIGHT", 100)
           map.push(Player)
           break
-        case 'r':
+        case "r":
           var coin = Ruby()
           coin.init(index, 0)
           map.push(coin)
           break
-        case 'g':
+        case "g":
           var gate = Gate()
           gate.init(index, 0)
           map.push(gate)
           break
-        case 'w':
+        case "w":
           var wall = Crate()
           wall.init(index, 0)
           map.push(wall)
           break
-        case 'c':
+        case "c":
           var chest = Chest()
           chest.init(index, 0)
           map.push(chest)
           break
-        case 'e':
+        case "e":
           var enemy = Enemy()
-          enemy.init(index, 0, 'LEFT')
+          enemy.init(index, 0, "LEFT")
           enemy.setHealth(100)
           map.push(enemy)
           break
-        case 'm':
+        case "m":
           var scorpion = Scorpion()
-          scorpion.init(index, 0, 'LEFT')
+          scorpion.init(index, 0, "LEFT")
           scorpion.setHealth(120)
           map.push(scorpion)
           break
-        case 'n':
+        case "n":
           var snake = Snake()
-          snake.init(index, 0, 'LEFT')
+          snake.init(index, 0, "LEFT")
           snake.setHealth(140)
           map.push(snake)
           break
-        case 's':
-          map.push({ name: 's', x: index, y: 0 })
+        case "s":
+          map.push({ name: "s", x: index, y: 0 })
           break
         default:
           break
