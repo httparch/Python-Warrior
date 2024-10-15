@@ -65,6 +65,34 @@ var Player = (function () {
         break
     }
   }
+
+  // skipWall(): Skips over the wall if the next field contains 'w'.
+  module.skipWall = function (map) {
+    var nextField = this.getNext(map)
+
+    if (nextField === 'w') {
+      switch (this.direction) {
+        case 'UP':
+          this.y += 3
+          break
+        case 'DOWN':
+          this.y -= 3
+          break
+        case 'LEFT':
+          this.x -= 3
+          break
+        case 'RIGHT':
+          console.log('here')
+          this.x += 3
+          break
+        default:
+          break
+      }
+    } else {
+      console.log('No wall to skip')
+    }
+  }
+
   //checkNextField(map): Checks the next field in the direction the player is facing,
   // returning the element found or indicating it's an empty field.
   module.checkNextField = function (map) {

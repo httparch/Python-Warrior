@@ -7,7 +7,9 @@ var Map = (function () {
     RUBY: 'r',
     ENEMY: 'e',
     WARRIOR: 'p',
-    SPACE: 's'
+    SPACE: 's',
+    SCORPION: 'm',
+    SNAKE: 'n'
   }
 
   /**
@@ -36,6 +38,11 @@ var Map = (function () {
           gate.init(index, 0)
           map.push(gate)
           break
+        case 'w':
+          var wall = Crate()
+          wall.init(index, 0)
+          map.push(wall)
+          break
         case 'c':
           var chest = Chest()
           chest.init(index, 0)
@@ -46,6 +53,18 @@ var Map = (function () {
           enemy.init(index, 0, 'LEFT')
           enemy.setHealth(100)
           map.push(enemy)
+          break
+        case 'm':
+          var scorpion = Scorpion()
+          scorpion.init(index, 0, 'LEFT')
+          scorpion.setHealth(120)
+          map.push(scorpion)
+          break
+        case 'n':
+          var snake = Snake()
+          snake.init(index, 0, 'LEFT')
+          snake.setHealth(140)
+          map.push(snake)
           break
         case 's':
           map.push({ name: 's', x: index, y: 0 })

@@ -21,6 +21,8 @@ var Display = (function () {
     cacheImage('player', 'character')
     cacheImage('player_left', 'character_left')
     cacheImage('enemy', 'enemy')
+    cacheImage('scorpion', 'scorpion')
+    cacheImage('snake', 'snake')
     cacheImage('heart', 'heart')
     cacheImage('ruby', 'coin')
     cacheImage('bg', 'bg')
@@ -92,7 +94,16 @@ var Display = (function () {
           context.drawImage(imageCache.ruby, translateImage(element.getX()), translateImage(1.5), 64, 64)
           break
         case 'e':
-          context.drawImage(imageCache.enemy, translateImage(element.getX()), translateImage(1), 206, 200)
+          context.drawImage(imageCache.enemy, translateImage(element.getX()), translateImage(1), 206, 250)
+          break
+        case 'm':
+          context.drawImage(imageCache.scorpion, translateImage(element.getX()), translateImage(1), 206, 210)
+          break
+        case 'n':
+          context.drawImage(imageCache.snake, translateImage(element.getX()), translateImage(1), 206, 200)
+          break
+        case 'w':
+          context.drawImage(imageCache.crate, translateImage(element.getX()), translateImage(1), 206, 200)
           break
         case 'g':
           context.drawImage(imageCache.gate, translateImage(element.getX()), translateImage(1), 206, 200)

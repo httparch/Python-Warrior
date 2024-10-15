@@ -38,7 +38,18 @@ function parse(str) {
         Player.canMove = false
         element.attack()
         break
+      case 'm':
+        Player.canMove = false
+        element.attack()
+        break
+      case 'n':
+        Player.canMove = false
+        element.attack()
+        break
       case 'c':
+        Player.canMove = false
+        break
+      case 'w':
         Player.canMove = false
         break
       case 's':
