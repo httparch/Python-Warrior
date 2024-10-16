@@ -49,6 +49,7 @@ This class represents the Player and provides several methods to control its beh
 - **e**: spider 
 - **c**: chest 
 - **s**: space 
+- **w**: wall 
 
 ## Example Usage
 
