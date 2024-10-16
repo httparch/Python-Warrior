@@ -25,14 +25,42 @@
 
   <body class="uk-background">
     <div class="uk-container">
-      <div class="uk-grid-collapse uk-child-width-expand@s uk-flex uk-flex-between uk-flex-middle">
+      <div
+        class="uk-grid-collapse uk-child-width-expand@s uk-flex uk-flex-between uk-flex-middle"
+      >
         <!-- Left-aligned text -->
-        <p id="hint" class="uk-text-left uk-margin-remove">Your hint text here</p>
+        <p id="hint" class="uk-text-left uk-margin-remove">
+          Your hint text here
+        </p>
 
         <!-- Right-aligned, stacked buttons -->
         <div class="uk-flex uk-flex-column uk-flex-right uk-width-auto">
-          <button onclick="changeLevel()" class="uk-button uk-button-default uk-margin-small-bottom" id="level">Level</button>
-          <button onclick="showPopup()" class="uk-button uk-button-default" uk-toggle="target: #modal-hint" id="hint">Hint</button>
+          <button
+            onclick="changeLevel()"
+            class="uk-button uk-button-default uk-margin-small-bottom"
+            id="level"
+          >
+            Level
+          </button>
+          <button
+            onclick="showPopup()"
+            class="uk-button uk-button-default"
+            uk-toggle="target: #modal-hint"
+            id="hint"
+          >
+            Hint
+          </button>
+          <!-- Music Toggle Button -->
+          <button id="music-toggle" onclick="toggleMusic()">
+            Turn Music Off
+          </button>
+
+          <!-- Background Music -->
+          <audio
+            id="background-music"
+            src="assets/sounds/background.mp3"
+            loop
+          ></audio>
         </div>
       </div>
       <div class="uk-grid-collapse uk-text-center" uk-grid>
@@ -40,13 +68,34 @@
           <canvas id="playcanvas" width="1500" height="300"></canvas>
         </div>
 
-        <div class="uk-width-1-1 uk-grid-collapse uk-text-center uk-margin-small-top" uk-grid>
-          <textarea class="uk-width-2-3 uk-padding-remove uk-margin-remove" id="code" hidden></textarea>
+        <div
+          class="uk-width-1-1 uk-grid-collapse uk-text-center uk-margin-small-top"
+          uk-grid
+        >
+          <textarea
+            class="uk-width-2-3 uk-padding-remove uk-margin-remove"
+            id="code"
+            hidden
+          ></textarea>
 
-          <div class="uk-width-expand uk-grid-collapse uk-text-center uk-padding-remove uk-margin-remove" uk-grid>
-            <div class="uk-width-1-1 uk-height-medium uk-padding-remove uk-margin-remove" id="console-log-div"></div>
-            <button onclick="restart()" class="uk-width-1-1 uk-button uk-text-center uk-padding-remove">Clear</button>
-            <button onclick="cm.save();parse($('#code').val())" class="uk-button uk-button-danger uk-width-1-1 uk-padding-remove">
+          <div
+            class="uk-width-expand uk-grid-collapse uk-text-center uk-padding-remove uk-margin-remove"
+            uk-grid
+          >
+            <div
+              class="uk-width-1-1 uk-height-medium uk-padding-remove uk-margin-remove"
+              id="console-log-div"
+            ></div>
+            <button
+              onclick="restart()"
+              class="uk-width-1-1 uk-button uk-text-center uk-padding-remove"
+            >
+              Clear
+            </button>
+            <button
+              onclick="cm.save();parse($('#code').val())"
+              class="uk-button uk-button-danger uk-width-1-1 uk-padding-remove"
+            >
               RUN
             </button>
           </div>
@@ -58,10 +107,40 @@
         <h2 class="uk-modal-title">Hint</h2>
         <p id="hint-text"></p>
         <p class="uk-text-right">
-          <button class="uk-button uk-button-default uk-modal-close" type="button">OK</button>
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+          >
+            OK
+          </button>
         </p>
       </div>
     </div>
+    <script>
+      var musicPlaying = true // Keeps track of whether music is currently playing
+
+      function toggleMusic() {
+        var backgroundMusic = document.getElementById("background-music")
+        var musicToggleButton = document.getElementById("music-toggle")
+
+        if (musicPlaying) {
+          backgroundMusic.pause() // Stop the music
+          musicToggleButton.textContent = "Turn Music On" // Update button text
+        } else {
+          backgroundMusic.play() // Start the music
+          musicToggleButton.textContent = "Turn Music Off" // Update button text
+        }
+
+        // Toggle the musicPlaying state
+        musicPlaying = !musicPlaying
+      }
+
+      // Automatically play music on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        var backgroundMusic = document.getElementById("background-music")
+        backgroundMusic.play() // Automatically start the music
+      })
+    </script>
     <script src="assets/js/console.js"></script>
     <script src="assets/js/codemirror.js"></script>
     <script src="assets/js/codemirror-javascript.js"></script>

@@ -6,7 +6,7 @@ var Scorpion = function () {
   var direction
   var health
 
-  module.name = 'm'
+  module.name = "m"
 
   module.init = function (x, y, dir) {
     this.x = x
@@ -29,14 +29,14 @@ var Scorpion = function () {
    * attack(): Plays an attack sound and calculates the attack coordinate based on the enemy's direction. It then calls the Map.attack() function to deal damage at the calculated coordinate.
    */
   module.attack = function () {
-    //var audio = new Audio('assets/sounds/rawr.mp3')
-    //audio.play()
+    var audio = new Audio("assets/sounds/scorpion.wav")
+    audio.play()
     var coord = this.x
     switch (this.direction) {
-      case 'LEFT':
+      case "LEFT":
         coord--
         break
-      case 'RIGHT':
+      case "RIGHT":
         coord++
         break
       default:

@@ -18,47 +18,47 @@ function parse(str) {
     Player.canPerformAction = true
 
     i++
-    console.log('ROUND ' + i + ' ------------------')
+    console.log("ROUND " + i + " ------------------")
 
     check()
 
     var element = Player.checkNextField(Map.map)
 
     switch (element.name) {
-      case 'r':
+      case "r":
         if (Player.health < 100) {
           Player.health += 20
         }
         Player.canMove = true
-        //var audio = new Audio('assets/sounds/coin.mp3')
-        //audio.play()
+        var audio = new Audio("assets/sounds/coin.wav")
+        audio.play()
         Map.map.splice(Map.map.indexOf(element), 1)
         break
-      case 'e':
+      case "e":
         Player.canMove = false
         element.attack()
         break
-      case 'm':
+      case "m":
         Player.canMove = false
         element.attack()
         break
-      case 'n':
+      case "n":
         Player.canMove = false
         element.attack()
         break
-      case 'c':
+      case "c":
         Player.canMove = false
         break
-      case 'w':
+      case "w":
         Player.canMove = false
         break
-      case 's':
+      case "s":
         Player.canMove = true
         if (Player.health < 100) {
           Player.health += 20
         }
         break
-      case 'g':
+      case "g":
         victory = true
         break
       default:
@@ -72,10 +72,10 @@ function parse(str) {
     // Translate Python-like code to JavaScript
     try {
       var jsCommands = convertPythonToJS(str)
-      console.log('Translated code:', jsCommands)
+      console.log("Translated code:", jsCommands)
       eval(jsCommands) // Execute the translated JavaScript commands
     } catch (error) {
-      console.error('Error executing command:', error)
+      console.error("Error executing command:", error)
     }
 
     if (i > 25) {
@@ -86,13 +86,13 @@ function parse(str) {
 
 function convertPythonToJS(pythonCode) {
   // Replace Python if-else syntax with JavaScript equivalent
-  pythonCode = pythonCode.replace(/if\s+(.*):/g, 'if ($1) {') // Handle if statements
-  pythonCode = pythonCode.replace(/elif\s+(.*):/g, '} else if ($1) {') // Handle elif statements
-  pythonCode = pythonCode.replace(/else:/g, '} else {') // Handle else statements
+  pythonCode = pythonCode.replace(/if\s+(.*):/g, "if ($1) {") // Handle if statements
+  pythonCode = pythonCode.replace(/elif\s+(.*):/g, "} else if ($1) {") // Handle elif statements
+  pythonCode = pythonCode.replace(/else:/g, "} else {") // Handle else statements
 
   // Split code into lines to handle indentation and block structure
-  const lines = pythonCode.split('\n')
-  let outputCode = ''
+  const lines = pythonCode.split("\n")
+  let outputCode = ""
   let openBlocks = 0
 
   lines.forEach((line) => {
@@ -101,14 +101,14 @@ function convertPythonToJS(pythonCode) {
     // Add line to output
     if (trimmedLine) {
       // Only process non-empty lines
-      outputCode += line + '\n'
+      outputCode += line + "\n"
 
       // Detect block openings
-      if (trimmedLine.endsWith('{')) {
+      if (trimmedLine.endsWith("{")) {
         openBlocks++
       }
       // Detect closing blocks manually
-      if (trimmedLine.startsWith('}')) {
+      if (trimmedLine.startsWith("}")) {
         openBlocks--
       }
     }
@@ -116,7 +116,7 @@ function convertPythonToJS(pythonCode) {
 
   // Ensure there are no extra closing braces
   while (openBlocks > 0) {
-    outputCode += '}\n'
+    outputCode += "}\n"
     openBlocks--
   }
 
@@ -133,7 +133,7 @@ function check() {
   if (victory) {
     var win = true
     Map.map.forEach(function (element) {
-      if (element.name === 'r' || element.name === 'c') {
+      if (element.name === "r" || element.name === "c") {
         win = false
       }
     })
@@ -141,32 +141,32 @@ function check() {
       clearInterval(loop)
       level++
       if (Math.random() > 0.5) {
-        //var audio = new Audio('assets/sounds/ugyi.mp3')
+        var audio = new Audio("assets/sounds/win1.wav")
       } else {
-        //var audio = new Audio('assets/sounds/jovagy.mp3')
+        var audio = new Audio("assets/sounds/win2.wav")
       }
-      //audio.play()
+      audio.play()
 
-      document.getElementById('console-log-text').textContent = ''
-      console.log('You won!')
+      document.getElementById("console-log-text").textContent = ""
+      console.log("You won!")
       Player.health = 100
       Map.map.splice(0, Map.map.length)
       loadMap(skin)
     } else {
-      console.log('Pick up all the coins!')
+      console.log("Pick up all the coins!")
     }
   }
   if (Player.health <= 0) {
     restart()
-    console.log('Defeat!')
-    //var audio = new Audio('assets/sounds/fatality.mp3')
-    //audio.play()
+    console.log("Defeat!")
+    var audio = new Audio("assets/sounds/dead.wav")
+    audio.play()
   }
 }
 //restart():Clears the current game loop, resets the console log, and reloads the current map.
 function restart() {
   clearInterval(loop)
-  document.getElementById('console-log-text').textContent = ''
+  document.getElementById("console-log-text").textContent = ""
   Map.map.splice(0, Map.map.length)
   loadMap(skin)
 }
@@ -176,7 +176,7 @@ function loadMap(skin) {
   fetch(`assets/levels/${level}/hint.txt`)
     .then((response) => response.text())
     .then((responseText) => {
-      document.getElementById('hint').innerHTML = responseText
+      document.getElementById("hint").innerHTML = responseText
     })
 
   // Load level layout
@@ -193,18 +193,22 @@ function loadMap(skin) {
 
 // changeLevel(): Allows the player to change levels through a prompt. If the new level exists, it loads it; otherwise, it shows an error.
 function changeLevel() {
-  const levelPopup = prompt('Enter level', '')
+  const levelPopup = prompt("Enter level", "")
 
   if (levelPopup !== null && level !== levelPopup) {
     fetch(`assets/levels/${levelPopup}/level.txt`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Level not found')
+          throw new Error("Level not found")
         }
         return response.text()
       })
       .then(() => {
-        window.history.pushState(null, null, `?level=${levelPopup}&skin=${getParameterByName('skin')}`)
+        window.history.pushState(
+          null,
+          null,
+          `?level=${levelPopup}&skin=${getParameterByName("skin")}`
+        )
         level = levelPopup
         restart()
       })
@@ -219,52 +223,56 @@ function showPopup() {
   fetch(`assets/levels/${level}/popup.txt`)
     .then((response) => response.text())
     .then((responseText) => {
-      document.getElementById('hint-text').innerHTML = responseText
+      document.getElementById("hint-text").innerHTML = responseText
     })
 }
 
 // The code sets the initial level and skin based on URL parameters and loads the corresponding map.
-document.addEventListener('DOMContentLoaded', function () {
-  level = getParameterByName('level')
-  skin = getParameterByName('skin')
+document.addEventListener("DOMContentLoaded", function () {
+  level = getParameterByName("level")
+  skin = getParameterByName("skin")
   loadMap(skin)
 })
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href
-  name = name.replace(/[\[\]]/g, '\\$&')
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+  name = name.replace(/[\[\]]/g, "\\$&")
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
     results = regex.exec(url)
   if (!results) return null
-  if (!results[2]) return ''
-  return decodeURIComponent(results[2].replace(/\+/g, ' '))
+  if (!results[2]) return ""
+  return decodeURIComponent(results[2].replace(/\+/g, " "))
 }
 
 //Initializes a CodeMirror instance for code input, allowing for JavaScript code editing.
 //When the player presses Ctrl + Enter, it saves the code and parses it
 var cm = CodeMirror.fromTextArea(code, {
-  mode: 'javascript',
+  mode: "javascript",
   lineNumbers: true,
-  theme: 'solarized light',
-  autofocus: true
+  theme: "solarized light",
+  autofocus: true,
 })
 
 // Set text alignment for elements with role 'presentation'
-const presentationElements = document.querySelectorAll('[role=presentation]')
+const presentationElements = document.querySelectorAll("[role=presentation]")
 presentationElements.forEach((element) => {
-  element.style.textAlign = 'initial'
+  element.style.textAlign = "initial"
 })
 
 // Add classes to the CodeMirror element
-const codeMirrorElement = document.querySelector('.CodeMirror')
+const codeMirrorElement = document.querySelector(".CodeMirror")
 if (codeMirrorElement) {
-  codeMirrorElement.classList.add('uk-width-2-3', 'uk-padding-remove', 'uk-margin-remove')
+  codeMirrorElement.classList.add(
+    "uk-width-2-3",
+    "uk-padding-remove",
+    "uk-margin-remove"
+  )
 }
 
 // Handle keydown events for the CodeMirror editor
-codeMirrorElement.addEventListener('keydown', function (e) {
-  if (e.ctrlKey && e.key === 'Enter') {
+codeMirrorElement.addEventListener("keydown", function (e) {
+  if (e.ctrlKey && e.key === "Enter") {
     cm.save()
-    parse(document.getElementById('code').value)
+    parse(document.getElementById("code").value)
   }
 })
