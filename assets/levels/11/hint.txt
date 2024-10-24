@@ -1,0 +1,2 @@
+What could the chest be hiding? Could it be the gold needed to win?<br>
+To open the chest use <code>Player.openChest()

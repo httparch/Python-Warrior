@@ -1,0 +1,8 @@
+"n" is the return value of snake.<br>
+Apply the functions you have learned to this:<br>
+<code>
+if (function() == "_"):<br>
+    function()<br>
+else <br>
+    function()<br>
+</code>

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/codemirror.css" />
     <link rel="stylesheet" href="assets/css/solarized.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   </head>
 
   <body class="uk-background">
@@ -52,7 +53,7 @@
           </button>
           <!-- Music Toggle Button -->
           <button id="music-toggle" onclick="toggleMusic()">
-            Turn Music Off
+            🔊
           </button>
 
           <!-- Background Music -->
@@ -125,10 +126,10 @@
 
         if (musicPlaying) {
           backgroundMusic.pause() // Stop the music
-          musicToggleButton.textContent = "Turn Music On" // Update button text
+          musicToggleButton.textContent = "🔇" // Update button text
         } else {
           backgroundMusic.play() // Start the music
-          musicToggleButton.textContent = "Turn Music Off" // Update button text
+          musicToggleButton.textContent = "🔊" // Update button text
         }
 
         // Toggle the musicPlaying state

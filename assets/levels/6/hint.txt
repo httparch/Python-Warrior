@@ -1,0 +1,2 @@
+Looks like the enemy has switched places with you!<br>
+To turn around, use the <code>Player.setDir("LEFT")</code> or <code>Player.setDir("RIGHT")</code> functions.

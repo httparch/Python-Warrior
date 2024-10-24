@@ -1,5 +1,2 @@
-So far you are very good!<br>
-But now you have to face two enemies. You can barely handle one, but you have to be smarter than two!<br>
-Fortunately, if your character isn't fighting, he'll be refilling his life. This may be useful.<br>
-New functions:<br>
-Query the player's health: <code>Player.getHealth() // 100 is the max, 20 is damaged by an enemy</code>
+Phew, you made it. Looks like you've found some gold!<br>
+Remember what you have learned so far to make it to the exit.

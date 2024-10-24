@@ -1,0 +1,3 @@
+Looks like there are some wallks blocking your path.<br>
+To get pass the walls, you will need to use the <code>Player.skipWall()</code> function.<br>
+Remmber to apply what you have learned so far.

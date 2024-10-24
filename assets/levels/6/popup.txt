@@ -1,0 +1,1 @@
+Use Player.setDir("LEFT") to turn around.
