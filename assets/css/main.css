@@ -12,7 +12,10 @@ p {
 }
 
 .character-image {
-  height: 150px; /* Keep the character image height */
+  height: 120px; /* Slightly reduced height */
+  border-radius: 50%;
+  border: 2px solid #3a3a3a;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
 }
 
 a:hover {
@@ -36,11 +39,13 @@ a:hover {
 
 #code {
   color: #e0e0e0; /* Light text color for code */
-  background: #2a2a2a; /* Dark background for code */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for code */
-  font-size: 15px; /* Keep the same font size */
-  padding: 10px; /* Add padding for better readability */
-  border-radius: 4px; /* Slightly rounded corners for aesthetics */
+  background: #222; /* Dark background for code */
+  border: 2px solid black !important; /* Solid black border */
+  font-size: 14px; /* Slightly smaller font */
+  padding: 12px !important; /* Padding inside the border */
+  border-radius: 0 !important; /* Explicitly set sharp corners */
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px !important; /* Space between console and terminal */
 }
 
 #console-log-div {
@@ -48,8 +53,572 @@ a:hover {
   overflow-y: scroll; /* Keep scroll behavior */
   color: #f0f0f0; /* Light text color for console logs */
   background: #1a1a1a; /* Darker background for console logs */
-  padding: 10px; /* Add padding for better readability */
-  border-radius: 4px; /* Slightly rounded corners for aesthetics */
+  border: 2px solid black !important; /* Solid black border */
+  padding: 12px !important; /* Padding inside the border */
+  border-radius: 0 !important; /* Explicitly set sharp corners */
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px !important; /* Space below the terminal */
 }
 
-/*bound for change*/
+/* Reduce body padding */
+body {
+  padding-top: 0px; /* Remove padding-top */
+  margin: 0; /* Ensure no default margin */
+}
+
+/* Style for the code input area (terminal where you put the code) */
+#terminal, /* Adjust this selector if needed */
+.CodeMirror, /* Adjust this selector if needed */
+textarea#code, /* Adjust this selector if needed */
+#code {
+    border: 2px solid #8b4513 !important; /* Solid brown border */
+    border-radius: 0 !important; /* Explicitly set sharp corners */
+    padding: 12px !important; /* Padding inside the border */
+    margin-bottom: 20px !important; /* Space below the terminal */
+    box-shadow: none !important; /* Remove any box shadow */
+    -webkit-box-shadow: none !important; /* Remove any WebKit box shadow */
+    -moz-box-shadow: none !important; /* Remove any Mozilla box shadow */
+}
+
+/* Style for the output area (console log) */
+#console-log-div {
+    border: 2px solid #8b4513 !important; /* Solid brown border */
+    border-radius: 0 !important; /* Explicitly set sharp corners */
+    padding: 12px !important; /* Padding inside the border */
+    margin-bottom: 40px !important; /* Space below the console */
+    box-shadow: none !important; /* Remove any box shadow */
+    -webkit-box-shadow: none !important; /* Remove any WebKit box shadow */
+    -moz-box-shadow: none !important; /* Remove any Mozilla box shadow */
+}
+
+/* Style for the area where sprites are shown */
+#playcanvas {
+    border: 2px solid #8b4513 !important; /* Change border color to match the game container */
+    border-radius: 5px !important; /* Optional: adds slightly rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important; /* Optional: adds a subtle shadow */
+}
+
+/* Override any conflicting styles */
+#playcanvas[style*="border"] {
+    border: 2px solid #8b4513 !important;
+}
+
+/* Style the header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #2a2a2a;
+  padding: 0px 0px; /* Reduced padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  height: 0px; /* Set a fixed height */
+}
+
+/* Enhance the uk-container for the game */
+.uk-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f4ecd8; /* Parchment-like color */
+
+  /* Add a subtle texture */
+  background-image: url('data:image/png;base64,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');
+
+  /* Remove the border */
+  border: none;
+
+  /* Add 3D pixel border effect using box-shadow with wood-like colors */
+  box-shadow:
+    0 0 0 4px #d2b48c,  /* Tan */
+    0 0 0 8px #8b4513,  /* Saddle Brown */
+    0 0 0 12px #5d2906, /* Dark Brown */
+    0 0 20px rgba(139, 69, 19, 0.3); /* Subtle wood-colored glow */
+
+  /* Keep the transform if you still want the perspective effect */
+  transform: perspective(1000px) rotateX(1deg);
+}
+
+/* Adjust text color for better readability on parchment background */
+.uk-container {
+  color: #333; /* Dark gray text color */
+}
+
+/* Adjust main content container for larger screens */
+@media (min-width: 1200px) {
+  .uk-container {
+    padding-left: 53px;
+    padding-right: 53px;
+  }
+}
+
+/* Improve typography */
+body {
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 20px;
+  color: #e0e0e0;
+}
+
+/* Enhance buttons */
+.uk-button {
+  border-radius:0px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 8px 15px;
+  margin-right: 10px;
+}
+
+.uk-button-primary {
+  background-color: #1e87f0;
+  box-shadow: 0 1px 3px rgba(30, 135, 240, 0.3);
+}
+
+.uk-button-primary:hover {
+  background-color: #0f6ecd;
+  box-shadow: 0 2px 5px rgba(30, 135, 240, 0.5);
+}
+
+/* Adjust spacing for elements inside the container */
+.uk-container > * {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* Improve code block styling */
+#code {
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhance console log styling */
+#console-log-div {
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Add a game container with background image */
+.game-container {
+    max-width: 800px;
+    margin: 10px auto; /* Kept at 10px */
+    padding: 10px; /* Kept at 10px */
+    background-image: url('Python-Warrior-main/assets/images/Asset1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Add some spacing between elements */
+.uk-margin-medium {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Add this new class for the button container */
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Modify button styling for Level and Hint */
+#level, #hint.uk-button {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ddd !important;
+    padding: 0 5px !important;
+    font-size: 0.875rem !important;
+    height: 30px !important;
+    line-height: 28px !important;
+    width: 60px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    margin: 0 2px !important;
+}
+
+#level:hover, #hint.uk-button:hover {
+    background-color: #f0f0f0 !important;
+}
+
+/* Adjust the container if needed */
+.uk-flex.uk-flex-column.uk-flex-right.uk-width-auto {
+    position: absolute !important; /* Position absolutely within container */
+    top: 10px !important; /* Distance from top of container */
+    right: 10px !important; /* Distance from right of container */
+    display: flex !important; /* Use flexbox for button layout */
+    flex-direction: row !important; /* Arrange buttons horizontally */
+    align-items: flex-start !important; /* Align items to the top */
+    z-index: 10 !important; /* Ensure buttons are above other content */
+}
+
+/* Ensure the hint text doesn't interfere with button styling */
+p#hint:not(.uk-button) {
+    margin-right: 190px !important; /* Increased to accommodate three buttons */
+    margin-top: 10px !important; /* Add some top margin to the hint text */
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Button container styling */
+.uk-flex.uk-flex-column.uk-flex-right.uk-width-auto {
+    position: absolute !important;
+    top: 50px !important;
+    right: 50px !important; /* Increased right margin for more space from the edge */
+    display: flex !important;
+    flex-direction: row !important; /* Change back to row */
+    align-items: flex-start !important; /* Align items to the top */
+    z-index: 10 !important;
+}
+
+/* Modify button styling for all buttons */
+#level, #hint.uk-button, #music-toggle {
+    background-color: #ffffff !important; /* button color */
+    color: black !important;
+    border: 1px solid #f4ecd8 !important;
+    padding: 0 5px !important;
+    font-size: 9px !important;
+    height: 30px !important;
+    line-height: 28px !important;
+    width: 60px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    margin: 0 5px !important; /* Increased from 2px to 5px for wider spacing */
+    border-radius: 0px !important; /* Add curved corners */
+    transition: background-color 0.3s ease !important;
+}
+
+#level:hover, #hint.uk-button:hover, #music-toggle:hover {
+    background-color: #f0f0f0 !important;
+}
+
+/* Style for the music toggle button */
+#music-toggle {
+    font-family: Arial, sans-serif !important; /* Ensure proper rendering of Unicode characters */
+    font-size: 1rem !important; /* Slightly larger font for the icon */
+}
+
+/* Ensure the hint text doesn't interfere with button styling */
+p#hint:not(.uk-button) {
+    margin-right: 210px !important; /* Increased to accommodate wider button spacing */
+    margin-top: 10px !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Style for the canvas where sprites are displayed */
+#playcanvas {
+    border: 2px solid #8b4513 !important; /* Change border color to match the game container */
+    border-radius: 5px !important; /* Optional: adds slightly rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important; /* Optional: adds a subtle shadow */
+}
+
+/* Style for the console container */
+#console-log-div {
+    position: relative !important;
+    padding-top: 40px !important; /* Make room for buttons at the top */
+}
+
+/* Define CSS variables with default values */
+#console-log-div {
+    --button-top: 800px; /* Increased significantly */
+    --button-bottom: auto;
+    position: relative !important;
+}
+
+/* Style for the button container clear and run */
+#console-log-div + button,
+#console-log-div + button + button {
+    position: absolute !important;
+    top: var(--button-top) !important;
+    bottom: var(--button-bottom) !important;
+    padding: 0px 8px !important;
+    font-size: 10px !important;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ddd !important;
+    border-radius: 0px !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    width: auto !important;
+}
+
+/* Position for Clear button */
+#console-log-div + button {
+    right: 150px !important;
+}
+
+/* Position for RUN button */
+
+#console-log-div + button + button {
+    right: 100px !important;
+    color: rgb(245, 245, 245) !important;
+    background-color: rgb(70, 150, 63) !important;
+    border: 1px solid rgb(70, 150, 63) !important;
+}
+
+/* Classes to be added based on hint.txt content */
+#console-log-div.buttons-top-50 {
+    --button-top: 150px; /* Increased significantly */
+    --button-bottom: auto;
+}
+
+#console-log-div.buttons-bottom-30 {
+    --button-top: auto;
+    --button-bottom: 30px;
+}
+
+/* Add more classes as needed for different positions */
+
+/* Highly specific selector for the canvas */
+body .uk-container .uk-grid-collapse .uk-width-1-1 #playcanvas {
+    border: 2px solid #8b4513 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Override any inline styles */
+body .uk-container .uk-grid-collapse .uk-width-1-1 #playcanvas[style*="border"] {
+    border: 2px solid #8b4513 !important;
+}
+
+/* Attempt to override any other potential interfering styles */
+body .uk-container .uk-grid-collapse .uk-width-1-1 #playcanvas::before,
+body .uk-container .uk-grid-collapse .uk-width-1-1 #playcanvas::after {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Existing styles for other elements remain unchanged */
+
+/* Container for console and buttons */
+.uk-width-expand {
+    position: relative !important;
+}
+
+/* Style for the console container */
+#console-log-div {
+    height: 300px !important;
+    overflow-y: auto !important;
+    border: 2px solid black !important;
+    border-radius: 0 !important;
+    padding: 12px !important;
+    margin-bottom: 40px !important;
+    position: relative !important;
+}
+
+/* Button container */
+.uk-width-expand::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Button styling */
+.uk-width-expand > button {
+    float: right !important;
+    margin-top: 240px !important;
+    margin-right: 0px !important;
+    padding: 3px 8px !important;
+    font-size: 0.8rem !important;
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ddd !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    font-family: 'Press Start 2P', cursive !important; /* Added pixelated font */
+}
+
+/* Position for Clear button */
+.uk-width-expand > button:nth-of-type(1) {
+    margin-right: 130px !important;
+}
+
+/* Position for RUN button */
+.uk-width-expand > button:nth-of-type(2) {
+    margin-right: 120px !important;
+}
+
+/* Ensure buttons don't overlap with console content */
+#console-log-div {
+    padding-top: 20px !important; /* Kept your change */
+}
+
+/* Add these styles for the hint popup */
+#modal-hint {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modal-hint .uk-modal-dialog {
+    background-color: #f4ecd8; /* Parchment-like color */
+    color: #000000; /* Set the default text color to black */
+    border: none;
+    border-radius: 0;
+    box-shadow:
+        0 0 0 4px #d2b48c,  /* Tan */
+        0 0 0 8px #8b4513,  /* Saddle Brown */
+        0 0 0 12px #5d2906, /* Dark Brown */
+        0 0 20px rgba(139, 69, 19, 0.3); /* Subtle wood-colored glow */
+    transform: perspective(1000px) rotateX(1deg);
+
+    /* Add a subtle texture */
+    background-image: url('data:image/png;base64,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');
+}
+
+#modal-hint .uk-modal-title {
+    color: #000000;
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+#modal-hint .uk-modal-body {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #000000;
+    letter-spacing: 1px;
+}
+
+/* Ensure all text within the modal body is black and pixelized */
+#modal-hint .uk-modal-body * {
+    color: #000000 !important;
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 12px !important;
+    line-height: 1.8 !important;
+    letter-spacing: 1px !important;
+}
+
+#modal-hint .uk-button {
+    font-family: 'Press Start 2P', cursive !important;
+    background-color: #ffffff;
+    color: #2a2a2a;
+    border: none;
+    font-size: 12px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+#modal-hint .uk-button:hover {
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+/* Pixelated button style with smaller font, light brown top, and sharp corners */
+#level, #hint.uk-button, #music-toggle {
+    color: #000000;
+    border: none;
+    padding: 5px 12px; /* Increased horizontal padding */
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 6px; /* Kept the small font size */
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    image-rendering: pixelated;
+    box-shadow:
+        0 3px 0 #b8860b,
+        0 6px 0 #8b6914,
+        0 9px 0 #6b4e10;
+    transition: all 0.1s ease;
+    position: relative;
+    top: 0;
+    border-radius: 0 !important; /* Sharp corners */
+    letter-spacing: 0.3px; /* Kept the letter spacing */
+    line-height: 1.2;
+    background-color: #ffd700; /* Golden color */
+    min-width: 60px; /* Set a minimum width for the buttons */
+    text-align: center; /* Ensure text is centered in the wider buttons */
+}
+
+#level:hover, #hint.uk-button:hover, #music-toggle:hover {
+    top: 3px;
+    box-shadow:
+        0 0 0 #b8860b,
+        0 3px 0 #8b6914,
+        0 6px 0 #6b4e10;
+}
+
+#level:active, #hint.uk-button:active, #music-toggle:active {
+    top: 6px;
+    box-shadow:
+        0 0 0 #b8860b,
+        0 0 0 #8b6914,
+        0 3px 0 #6b4e10;
+}
+
+/* Add this if you want to create a light brown border effect with sharp corners */
+#level::before, #hint.uk-button::before, #music-toggle::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    background-color: #ffd700; /* Golden color */
+    z-index: -1;
+    border-radius: 0 !important; /* Sharp corners */
+}
+
+/* Adjust the container for proper button alignment */
+.uk-flex.uk-flex-column.uk-flex-right.uk-width-auto {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 6px; /* Kept the small gap between buttons */
+}
+
+/* Style for the hint text */
+p#hint:not(.uk-button) {
+    color: #000000 !important;
+    margin-right: 210px !important;
+    margin-top: 10px !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    font-family: 'Press Start 2P', cursive !important; /* Pixelated font */
+    font-size: 12px !important; /* Adjusted for pixelated font */
+    line-height: 1.5 !important; /* Increased line height for readability */
+    letter-spacing: 1px !important; /* Adds space between letters for better readability */
+}
+
+/* Ensure this style takes precedence */
+.uk-container p#hint:not(.uk-button) {
+    color: #000000 !important;
+    font-family: 'Press Start 2P', cursive !important;
+}
+
+
+
+
+
+
+
+
+
+
+

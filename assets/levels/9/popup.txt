@@ -1,0 +1,1 @@
+Use the <code>Player.getHealth()</code> regenerate health.

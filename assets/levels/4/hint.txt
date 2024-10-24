@@ -1,1 +1,4 @@
-What could the chest be hiding? Could it be the gold needed to win?<br> New functions that you will need for the level:<br> Change the player's direction: <code>Player.setDir("LEFT") // or "RIGHT" accordingly</code><br> Open the chest: <code>Player.openChest() // if you are within range</code><br> Determine the distance of the chest from the player (if it's in front of you: positive; if it's behind you: negative; if it's open: 0): <code>Player.getChestDistance()</code><br> You may need to check more complex conditions (but you might be able to solve it without them):<br> <code>if(a || b) // or</code><br> <code>if(a && b) // and</code><br>
+So far you are very good!<br>
+But now you have to face two enemies. You can barely handle one, but you have to be smarter than two!<br>
+Fortunately, if your character isn't fighting, he'll be refilling his life. <br>
+This may be useful: <code>Player.getHealth() // 100 is the max, 20 is damaged by an enemy</code>

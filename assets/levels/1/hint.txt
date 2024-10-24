@@ -1,5 +1,7 @@
-Collect all the coins and get to the exit!<br>
-You have to write a short program for the solution.<br>
-We wrote the cycle for you, your code runs until you win (or reach the limit of rounds).<br>
-This track won't cause any problems:<br>
-There's nothing in the way, so just issue <code>Player.walk();</code> to move.
+Hello, Adventurer! Welcome.
+Here's where your coding journey will begin in order to save the princess.<br>
+The path ahead seems safe and clear,
+use <code>Player.walk();</code> to move to the portal.<br><br>
+
+Remember this code, it will be useful.
+
