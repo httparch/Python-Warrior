@@ -156,6 +156,17 @@
         </p>
       </div>
     </div>
+    <div id="level-complete-modal" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Level Complete!</h2>
+        <p>Congratulations! You've successfully completed the level.</p>
+        <p class="uk-text-right">
+          <button class="uk-button uk-button-default uk-modal-close" type="button" onclick="proceedToNextLevel()">
+            Proceed to Next Level
+          </button>
+        </p>
+      </div>
+    </div>
     <script>
       var musicPlaying = true // Keeps track of whether music is currently playing
 
@@ -180,6 +191,26 @@
         var backgroundMusic = document.getElementById("background-music")
         backgroundMusic.play() // Automatically start the music
       })
+
+      function onLevelComplete() {
+        // Trigger the modal
+        UIkit.modal('#level-complete-modal').show();
+      }
+
+      function proceedToNextLevel() {
+        // Logic to proceed to the next level
+        window.location.href = `game.html?level=${level}&skin=${skin}`; // Update the URL as needed
+      }
+
+      // Example function to simulate level completion
+      function checkLevelCompletion() {
+        // This is where you would check if the level is complete
+        // For demonstration, we'll just call it directly
+        onLevelComplete();
+      }
+
+      // Call this function when the level is completed
+      // checkLevelCompletion(); // Uncomment this line to test
     </script>
     <script src="assets/js/console.js"></script>
     <script src="assets/js/codemirror.js"></script>

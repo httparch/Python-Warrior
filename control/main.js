@@ -151,7 +151,8 @@ function check() {
       console.log("You won!")
       Player.health = 100
       Map.map.splice(0, Map.map.length)
-      loadMap(skin)
+      // Show the level complete modal
+      UIkit.modal('#level-complete-modal').show()
     } else {
       console.log("Pick up all the coins!")
     }
