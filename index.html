@@ -85,17 +85,22 @@
       /* Modal Styles */
       .uk-modal-dialog {
         font-family: 'Press Start 2P', sans-serif;
-        background-image: url('assets/images/wood-texture.png');
-        background-color: #8B4513;
-        border: 3px solid #4a2508;
+        background-color: #f4ecd8; /* Parchment-like color */
+        color: #000000; /* Set the default text color to black */
+        border: none;
         border-radius: 0;
-        color: white;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        box-shadow:
+            0 0 0 4px #d2b48c,  /* Tan */
+            0 0 0 8px #8b4513,  /* Saddle Brown */
+            0 0 0 12px #5d2906, /* Dark Brown */
+            0 0 20px rgba(139, 69, 19, 0.3); /* Subtle wood-colored glow */
+        transform: perspective(1000px) rotateX(1deg);
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
       }
 
       .uk-modal-title {
         font-family: 'Press Start 2P', sans-serif;
-        color: white;
+        color: #000000;
         text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
         font-size: 1.5em;
         text-align: center;
@@ -115,13 +120,18 @@
 
       /* Style the close button */
       .uk-modal-close-default {
-        color: white !important;
+        color: #000000 !important;
       }
 
       #how-to-play-modal .uk-modal-dialog {
         width: 80%; /* Adjust the percentage as needed */
         max-width: 800px; /* Optional: set a maximum width */
         margin: auto; /* Center the modal */
+      }
+
+      .highlight {
+        color: #9b2f08; /* Change this to your desired color */
+        font-weight: bold; /* Optional: make the text bold */
       }
     </style>
   </head>
@@ -143,17 +153,17 @@
         <h2 class="uk-modal-title">How to Play Python Warrior</h2>
         <p>Welcome to Python Warrior! In this game, you'll use coding to control your character and progress through exciting challenges. Here’s how to get started:<br><br>
 
-          1. Write Code to Move: Use the console on your screen to enter code that controls your character’s movement and actions. Write commands to move, attack, and more!
+          1. <span class="highlight">Write Code to Move:</span> Use the console on your screen to enter code that controls your character’s movement and actions. Write commands to move, attack, and more!
           <br><br>
-          2. Run the Code: Once your code is ready, click the Run button. Your character will execute the commands you've written.
+          2. <span class="highlight">Run the Code:</span> Once your code is ready, click the Run button. Your character will execute the commands you've written.
           <br><br>
-          3.  Clear Console: Need a fresh start? Use the Clear button to reset the console and clear any current commands, putting your character back to the initial position.
+          3. <span class="highlight">Clear Console:</span> Need a fresh start? Use the Clear button to reset the console and clear any current commands, putting your character back to the initial position.
           <br><br>
-          4. View Abilities: Unsure what your character can do? Click the Abilities button for a full list of available commands and abilities.
+          4. <span class="highlight">View Abilities:</span> Unsure what your character can do? Click the Abilities button for a full list of available commands and abilities.
           <br><br>
-          5. Hints: If you’re stuck, the Hint button provides helpful tips to guide you through tougher parts of the game.
+          5. <span class="highlight">Hints:</span> If you’re stuck, the Hint button provides helpful tips to guide you through tougher parts of the game.
           <br><br>
-          6. Explore and Experiment: Part of the fun is figuring out which commands work best for different situations, so feel free to try new strategies!
+          6. <span class="highlight"></span>Explore and Experiment:</span> Part of the fun is figuring out which commands work best for different situations, so feel free to try new strategies!
           <br><br>
           Happy coding, and enjoy your adventure in Python Warrior!</p>
         <button class="uk-modal-close-default" type="button" uk-close></button>
