@@ -37,11 +37,11 @@
         <!-- Right-aligned, stacked buttons -->
         <div class="uk-flex uk-flex-column uk-flex-right uk-width-auto">
           <button
-            onclick="changeLevel()"
             class="uk-button uk-button-default uk-margin-small-bottom"
+            uk-toggle="target: #modal-level"
             id="level"
           >
-            Level
+            Abilities
           </button>
           <button
             onclick="showPopup()"
@@ -107,6 +107,45 @@
       <div class="modal uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Hint</h2>
         <p id="hint-text"></p>
+        <p class="uk-text-right">
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+          >
+            OK
+          </button>
+        </p>
+      </div>
+    </div>
+    <div id="modal-level" uk-modal>
+      <div class="modal uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Abilities</h2>
+        <div id="level-text">
+          <!-- Add your abilities/level content here -->
+          <ul>
+            <li><span class="ability-title">Player.walk()</span> - Moves the player one step forward.</li>
+            <li><span class="ability-title">Player.getNext()</span> - Checks the next space to see what lies ahead (e.g., enemy, wall, space, etc.).</li>
+            <li><span class="ability-title">Player.attack()</span> - Attacks the enemy in front of the player.</li>
+            <li><span class="ability-title">Player.setDir("LEFT" / "RIGHT")</span> - Sets the player’s direction to either left or right.</li>
+            <li><span class="ability-title">Player.skipWall()</span> - Allows the player to skip a wall in front of them.</li>
+            <li><span class="ability-title">Player.getHealth()</span> - Checks the player’s current health.</li>
+            <li><span class="ability-title">Player.setHealth(value)</span> - Sets the player’s health to a specified value.</li>
+            <li><span class="ability-title">Player.openChest()</span> - Opens a chest when it is encountered.</li><br>
+
+            <span class="ability-title">Elements Key</span><br>
+
+              SPIDER: "e"<br>
+              WALL: "w"<br>
+              RUBY: "r"<br>
+              ENEMY: "e"<br>
+              WARRIOR: "p"<br>
+              SPACE: "s"<br>
+              SCORPION: "m"<br>
+              SNAKE: "n"<br>
+              CHEST: "c"<br>
+              PRINCESS: "p"<br>
+          </ul>
+        </div>
         <p class="uk-text-right">
           <button
             class="uk-button uk-button-default uk-modal-close"
