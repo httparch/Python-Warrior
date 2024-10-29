@@ -17,20 +17,21 @@ var Display = (function () {
     drawInterval = undefined
 
     skin = s
-    cacheImage('crate', 'crate')
-    cacheImage('player', 'character')
-    cacheImage('player_left', 'character_left')
-    cacheImage('enemy', 'enemy')
-    cacheImage('scorpion', 'scorpion')
-    cacheImage('snake', 'snake')
-    cacheImage('heart', 'heart')
-    cacheImage('ruby', 'coin')
-    cacheImage('bg', 'bg')
-    cacheImage('bg_cloud', 'bg_cloud')
-    cacheImage('bg_secondary', 'bg_secondary')
-    cacheImage('bg_front', 'bg_front')
-    cacheImage('gate', 'gate')
-    cacheImage('chest', 'chest')
+    cacheImage("crate", "crate")
+    cacheImage("player", "character")
+    cacheImage("player_left", "character_left")
+    cacheImage("enemy", "enemy")
+    cacheImage("scorpion", "scorpion")
+    cacheImage("snake", "snake")
+    cacheImage("heart", "heart")
+    cacheImage("ruby", "coin")
+    cacheImage("bg", "bg")
+    cacheImage("bg_cloud", "bg_cloud")
+    cacheImage("bg_secondary", "bg_secondary")
+    cacheImage("bg_front", "bg_front")
+    cacheImage("gate", "gate")
+    cacheImage("princess", "princess")
+    cacheImage("chest", "chest")
 
     setTimeout(function () {
       if (drawInterval === undefined)
@@ -50,8 +51,8 @@ var Display = (function () {
         Iterates through the map array to draw different game elements (e.g., player, enemies, collectibles) based on their type.
    */
   function draw(map) {
-    var canvas = document.getElementById('playcanvas')
-    var context = canvas.getContext('2d')
+    var canvas = document.getElementById("playcanvas")
+    var context = canvas.getContext("2d")
 
     context.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -64,11 +65,23 @@ var Display = (function () {
     // draw additional image1
 
     if (x > 0) {
-      context.drawImage(imageCache.bg_cloud, -canvas.width + x, 0, canvas.width + 5, canvas.height)
+      context.drawImage(
+        imageCache.bg_cloud,
+        -canvas.width + x,
+        0,
+        canvas.width + 5,
+        canvas.height
+      )
     }
     // draw additional image2
     if (x - canvas.width > 0) {
-      context.drawImage(imageCache.bg_cloud, -canvas.width * 2 + x, 0, canvas.width, canvas.height)
+      context.drawImage(
+        imageCache.bg_cloud,
+        -canvas.width * 2 + x,
+        0,
+        canvas.width,
+        canvas.height
+      )
     }
     // amount to move
     x += dx
@@ -79,37 +92,106 @@ var Display = (function () {
     for (var i = 1; i <= Player.health / 20; i++) {
       context.drawImage(imageCache.heart, i * 55, 10, 50, 50)
     }
-    context.drawImage(imageCache.bg_secondary, 0, 0, canvas.width, canvas.height)
+    context.drawImage(
+      imageCache.bg_secondary,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    )
 
     map.forEach(function (element) {
       switch (element.name) {
-        case 'p':
-          if (element.direction === 'LEFT') {
-            context.drawImage(imageCache.player_left, translateImage(element.getX()), translateImage(1), 186, 186)
+        case "p":
+          if (element.direction === "LEFT") {
+            context.drawImage(
+              imageCache.player_left,
+              translateImage(element.getX()),
+              translateImage(1),
+              186,
+              186
+            )
           } else {
-            context.drawImage(imageCache.player, translateImage(element.getX()), translateImage(1), 186, 186)
+            context.drawImage(
+              imageCache.player,
+              translateImage(element.getX()),
+              translateImage(1),
+              186,
+              186
+            )
           }
           break
-        case 'r':
-          context.drawImage(imageCache.ruby, translateImage(element.getX()), translateImage(1.5), 64, 64)
+        case "r":
+          context.drawImage(
+            imageCache.ruby,
+            translateImage(element.getX()),
+            translateImage(1.5),
+            64,
+            64
+          )
           break
-        case 'e':
-          context.drawImage(imageCache.enemy, translateImage(element.getX()), translateImage(1), 206, 250)
+        case "e":
+          context.drawImage(
+            imageCache.enemy,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            250
+          )
           break
-        case 'm':
-          context.drawImage(imageCache.scorpion, translateImage(element.getX()), translateImage(1), 206, 210)
+        case "m":
+          context.drawImage(
+            imageCache.scorpion,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            210
+          )
           break
-        case 'n':
-          context.drawImage(imageCache.snake, translateImage(element.getX()), translateImage(1), 206, 200)
+        case "n":
+          context.drawImage(
+            imageCache.snake,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            200
+          )
           break
-        case 'w':
-          context.drawImage(imageCache.crate, translateImage(element.getX()), translateImage(1), 206, 200)
+        case "w":
+          context.drawImage(
+            imageCache.crate,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            200
+          )
           break
-        case 'g':
-          context.drawImage(imageCache.gate, translateImage(element.getX()), translateImage(1), 206, 200)
+        case "g":
+          context.drawImage(
+            imageCache.gate,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            200
+          )
           break
-        case 'c':
-          context.drawImage(imageCache.chest, translateImage(element.getX()), translateImage(1), 206, 200)
+        case "c":
+          context.drawImage(
+            imageCache.chest,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            200
+          )
+          break
+        case "i":
+          context.drawImage(
+            imageCache.princess,
+            translateImage(element.getX()),
+            translateImage(1),
+            206,
+            200
+          )
           break
         default:
           break
@@ -125,7 +207,7 @@ var Display = (function () {
   //cacheImage(name, longName): Caches an image by creating a new Image object, setting its src, and storing it in imageCache once it loads.
   function cacheImage(name, longName) {
     var imageObj = new Image()
-    imageObj.src = 'assets/images/' + skin + '/' + longName + '.svg'
+    imageObj.src = "assets/images/" + skin + "/" + longName + ".svg"
     imageObj.onload = function () {
       imageCache[name] = imageObj
     }

@@ -1,1 +1,1 @@
-Player.walk(); to walk to the princess.
+use a walk

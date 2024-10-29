@@ -61,6 +61,9 @@ function parse(str) {
       case "g":
         victory = true
         break
+      case "i":
+        victory = true
+        break
       default:
         if (Player.health < 100) {
           Player.health += 20
