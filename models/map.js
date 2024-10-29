@@ -11,6 +11,7 @@ var Map = (function () {
     SCORPION: "m",
     SNAKE: "n",
     CHEST: "c",
+    PRINCESS: "i",
   }
 
   /**
@@ -38,6 +39,11 @@ var Map = (function () {
           var gate = Gate()
           gate.init(index, 0)
           map.push(gate)
+          break
+        case "i":
+          var princess = Princess()
+          princess.init(index, 0)
+          map.push(princess)
           break
         case "w":
           var wall = Crate()
