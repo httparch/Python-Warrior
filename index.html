@@ -5,45 +5,123 @@
     <title>Python Warrior</title>
     <script src="assets/js/uikit.min.js"></script>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
-
     <link rel="stylesheet" href="assets/css/uikit.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Press Start 2P', sans-serif; /* Apply pixel font */
+      }
+
       body {
-        background-color: #f5f5f5; /* Light background for better contrast */
+        background-image: url('assets/images/bg1.jpg');
+        background-size: cover;  /* Cover the entire viewport */
+        background-position: center;  /* Center the background image */
+        background-repeat: no-repeat;  /* Don't repeat the image */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh; /* Full viewport height */
       }
 
       h1 {
-        font-size: 2.5em;
-        margin-bottom: 20px;
-        color: #333; /* Darker color for title */
+        font-size: 2em;
+        margin-bottom: 15px;
+        color: #333;
+        font-family: 'Press Start 2P', sans-serif; /* Ensure pixel font for heading */
       }
 
       .character-image {
-        max-width: 250px; /* Limit the size of the character image */
-        margin: 20px 0; /* Add margin for spacing */
+        max-width: 200px;
+        margin: 15px 0;
+        filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.5));  /* Adds a soft shadow */
       }
 
-      .start-button {
+      .button {
         display: inline-block;
-        padding: 15px 30px;
-        font-size: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
         color: white;
-        background-color: #28a745; /* Green for start button */
-        border: none;
-        border-radius: 5px;
+        background-image: url('assets/images/wood-texture.png');
+        background-color: #8B4513;
+        border: 3px solid #4a2508;
+        border-radius: 0;
         text-decoration: none;
-        transition: background-color 0.3s;
-        margin-top: 20px; /* Add margin for spacing */
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-top: 15px;
+        cursor: pointer;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.4),
+          0 2px 4px rgba(0,0,0,0.2);
+        width: 200px;
+        text-align: center;
       }
 
-      .start-button:hover {
-        background-color: #218838; /* Darker green on hover */
+      .button:hover {
+        transform: scale(1.05);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.4),
+          0 4px 8px rgba(0,0,0,0.3);
+      }
+
+      .button:active {
+        transform: scale(0.95);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.2),
+          0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .button:hover,
+      .button:visited,
+      .button:active,
+      .button:link {
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Modal Styles */
+      .uk-modal-dialog {
+        font-family: 'Press Start 2P', sans-serif;
+        background-image: url('assets/images/wood-texture.png');
+        background-color: #8B4513;
+        border: 3px solid #4a2508;
+        border-radius: 0;
+        color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .uk-modal-title {
+        font-family: 'Press Start 2P', sans-serif;
+        color: white;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        font-size: 1.5em;
+        text-align: center;
+      }
+
+      .uk-modal-body {
+        font-size: 0.8em;
+        line-height: 1.8;  /* Increased line height for better readability */
+        text-align: justify;  /* Add this line for justified text */
+        padding: 50px;  /* Optional: adds some padding for better readability */
+      }
+
+      .uk-modal-body p {
+        text-align: justify;  /* Ensure paragraphs are also justified */
+        text-justify: inter-word;  /* Improves word spacing in justified text */
+      }
+
+      /* Style the close button */
+      .uk-modal-close-default {
+        color: white !important;
+      }
+
+      #how-to-play-modal .uk-modal-dialog {
+        width: 80%; /* Adjust the percentage as needed */
+        max-width: 800px; /* Optional: set a maximum width */
+        margin: auto; /* Center the modal */
       }
     </style>
   </head>
@@ -54,6 +132,32 @@
     <img src="assets/images/warrior/character.svg" alt="Character" class="character-image" />
 
     <!-- Start Button for Level 1 -->
-    <a href="game.html?level=1&skin=warrior" class="start-button">Let's go!</a>
+    <a href="game.html?level=1&skin=warrior" class="button">Let's go!</a>
+
+    <!-- How to Play Text -->
+    <a href="#" class="button" uk-toggle="target: #how-to-play-modal">How to Play</a>
+
+    <!-- How to Play Modal -->
+    <div id="how-to-play-modal" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">How to Play Python Warrior</h2>
+        <p>Welcome to Python Warrior! In this game, you'll use coding to control your character and progress through exciting challenges. Here’s how to get started:<br><br>
+
+          1. Write Code to Move: Use the console on your screen to enter code that controls your character’s movement and actions. Write commands to move, attack, and more!
+          <br><br>
+          2. Run the Code: Once your code is ready, click the Run button. Your character will execute the commands you've written.
+          <br><br>
+          3.  Clear Console: Need a fresh start? Use the Clear button to reset the console and clear any current commands, putting your character back to the initial position.
+          <br><br>
+          4. View Abilities: Unsure what your character can do? Click the Abilities button for a full list of available commands and abilities.
+          <br><br>
+          5. Hints: If you’re stuck, the Hint button provides helpful tips to guide you through tougher parts of the game.
+          <br><br>
+          6. Explore and Experiment: Part of the fun is figuring out which commands work best for different situations, so feel free to try new strategies!
+          <br><br>
+          Happy coding, and enjoy your adventure in Python Warrior!</p>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+      </div>
+    </div>
   </body>
 </html>
