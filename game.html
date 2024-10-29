@@ -196,6 +196,17 @@
         </p>
       </div>
     </div>
+    <div id="game-complete-modal" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Congratulations!</h2>
+        <p>You've finished the game!</p>
+        <p class="uk-text-right">
+          <button class="uk-button uk-button-default uk-modal-close" type="button" onclick="playAgain()">
+            Play Again
+          </button>
+        </p>
+      </div>
+    </div>
     <script>
       var musicPlaying = true // Keeps track of whether music is currently playing
 
@@ -240,6 +251,11 @@
 
       // Call this function when the level is completed
       // checkLevelCompletion(); // Uncomment this line to test
+
+      function playAgain() {
+        // Logic to restart the game from the first level
+        window.location.href = 'game.html?level=1&skin=' + skin; // Adjust the URL as needed
+      }
     </script>
     <script src="assets/js/console.js"></script>
     <script src="assets/js/codemirror.js"></script>
