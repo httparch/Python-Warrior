@@ -142,7 +142,7 @@
     <img src="assets/images/warrior/character.svg" alt="Character" class="character-image" />
 
     <!-- Start Button for Level 1 -->
-    <a href="game.html?level=1&skin=warrior" class="button">Let's go!</a>
+    <button class="button"  id="startGameButton">Let's go!</button>
 
     <!-- How to Play Text -->
     <a href="#" class="button" uk-toggle="target: #how-to-play-modal">How to Play</a>
@@ -169,5 +169,28 @@
         <button class="uk-modal-close-default" type="button" uk-close></button>
       </div>
     </div>
+
+    <script>
+      // Function to start the game with received data
+      function startGame(level) {
+        // Redirect or initialize your game here with the level and skin
+
+        window.location.href = `game.html?level=${level}&skin=warrior`;
+      }
+
+      // Listen for messages from the parent
+      window.addEventListener('message', function(event) {
+        // Make sure to check the origin of the message for security
+        if (event.origin !== "http://localhost:5173/app") return; // Replace with the actual origin
+
+        const data = event.data;
+        if (data.type  === 'parent-to-python-warrior' && data.data.level) {
+          startGame(data.data.level);
+        }
+      });
+
+      document.getElementById('startGameButton').addEventListener('click', startGame);
+    </script>
+
   </body>
 </html>
