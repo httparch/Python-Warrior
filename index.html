@@ -170,23 +170,31 @@
     </div>
 
     <script>
-      // Function to start the game with received data
-      function startGame(level) {
-        // Redirect or initialize your game here with the level and skin
-        window.location.href = `game.html?level=${level}&skin=warrior`;
+      // Variable to store the level received from the parent
+      let receivedLevel = null;
+
+      // Function to start the game with the stored level
+      function startGame() {
+        if (receivedLevel !== null) {
+          // Redirect or initialize your game here with the level and skin
+          window.location.href = `game.html?level=${receivedLevel}&skin=warrior`;
+        } else {
+          console.log("Level data not received yet.");
+        }
       }
 
       // Listen for messages from the parent
       window.addEventListener('message', function(event) {
         // Make sure to check the origin of the message for security
-        //if (event.origin !== "http://localhost:5173/app") return; // Replace with the actual origin
+        // if (event.origin !== "http://localhost:5173/app") return; // Replace with the actual origin
 
-        const data = event.data;  console.log('here')
-        //const parsed = JSON.parse(data);
-        console.log('Level:',data.level)
-        if (data.type  === 'parent-to-python-warrior' && data.level) {
+        const data = event.data;
+        console.log('Received data:', data);
 
-          startGame(data.level);
+        // Check if message type and data are correct
+        if (data.type === 'parent-to-python-warrior' && data.level) {
+          receivedLevel = data.level; // Store the level data
+          console.log('Level received:', receivedLevel);
         }
       });
 
