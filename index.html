@@ -174,8 +174,9 @@
       // Function to start the game with received data
       function startGame(level) {
         // Redirect or initialize your game here with the level and skin
-
+        console.log(level)
         window.location.href = `game.html?level=${level}&skin=warrior`;
+        console.log(window.location.href)
       }
 
       // Listen for messages from the parent
@@ -183,7 +184,8 @@
         // Make sure to check the origin of the message for security
         if (event.origin !== "http://localhost:5173/app") return; // Replace with the actual origin
 
-        const data = event.data;
+        const data = event.data;  console.log('here')
+        console.log(JSON.parse(data))
         if (data.type  === 'parent-to-python-warrior' && data.data.level) {
           startGame(data.data.level);
         }
