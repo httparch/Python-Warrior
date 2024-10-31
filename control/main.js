@@ -134,37 +134,47 @@ If the player's health drops to zero, it restarts the game and plays a defeat so
 
 function check() {
   if (victory) {
-    var win = true
+    var win = true;
     Map.map.forEach(function (element) {
       if (element.name === "r" || element.name === "c") {
-        win = false
+        win = false;
       }
-    })
+    });
     if (win) {
-      clearInterval(loop)
-      level++
-      if (Math.random() > 0.5) {
-        var audio = new Audio("assets/sounds/win1.wav")
-      } else {
-        var audio = new Audio("assets/sounds/win2.wav")
-      }
-      audio.play()
+      clearInterval(loop);
+      if (level < 15) { // Change to level 15 as the last level
+        level++;
+        if (Math.random() > 0.5) {
+          var audio = new Audio("assets/sounds/win1.wav");
+        } else {
+          var audio = new Audio("assets/sounds/win2.wav");
+        }
+        audio.play();
 
-      document.getElementById("console-log-text").textContent = ""
-      console.log("You won!")
-      Player.health = 100
-      Map.map.splice(0, Map.map.length)
-      // Show the level complete modal
-      UIkit.modal('#level-complete-modal').show()
+        document.getElementById("console-log-text").textContent = "";
+        console.log("You won!");
+        Player.health = 100;
+        Map.map.splice(0, Map.map.length);
+        // Show the level complete modal
+        UIkit.modal('#level-complete-modal').show();
+      } else {
+        // Last level (15) completed
+        document.getElementById("console-log-text").textContent = "";
+        console.log("Congratulations! You've finished the game!");
+        Player.health = 100;
+        Map.map.splice(0, Map.map.length);
+        // Show the game complete modal
+        UIkit.modal('#game-complete-modal').show();
+      }
     } else {
-      console.log("Pick up all the coins!")
+      console.log("Pick up all the coins!");
     }
   }
   if (Player.health <= 0) {
-    restart()
-    console.log("Defeat!")
-    var audio = new Audio("assets/sounds/dead.wav")
-    audio.play()
+    restart();
+    console.log("Defeat!");
+    var audio = new Audio("assets/sounds/dead.wav");
+    audio.play();
   }
 }
 //restart():Clears the current game loop, resets the console log, and reloads the current map.
