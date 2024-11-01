@@ -80,6 +80,7 @@ function parse(str) {
           Player.health += 20
           logAction("healing")
         }
+        logAction("walking forward")
         break
       default:
         Player.canMove = true
@@ -90,12 +91,15 @@ function parse(str) {
     // Translate Python-like code to JavaScript
     try {
       var jsCommands = convertPythonToJS(str)
-      // Store initial health to check if healing occurred
+      // Store initial values to check for changes
       const initialHealth = Player.health
+      const initialDir = Player.dir
+
       eval(jsCommands) // Execute the translated JavaScript commands
-      // If health increased, log the healing message
-      if (Player.health > initialHealth) {
-        logAction("healing")
+
+      // Log direction change only if it happened
+      if (Player.dir !== initialDir) {
+        logAction(`turning ${Player.dir.toLowerCase()}`)
       }
     } catch (error) {
       console.log("There's something wrong with your code")
