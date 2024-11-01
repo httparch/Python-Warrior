@@ -78,6 +78,7 @@ function parse(str) {
         Player.canMove = true
         if (Player.health < 100) {
           Player.health += 20
+          logAction("healing")
         }
         break
       default:
