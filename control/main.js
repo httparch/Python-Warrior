@@ -23,6 +23,10 @@ window.addEventListener("message", function (event) {
   }
 })
 
+function logAction(action) {
+  console.log(`Player is ${action}`)
+}
+
 function parse(str) {
   restart()
   var i = 0
@@ -43,45 +47,44 @@ function parse(str) {
           Player.health += 20
         }
         Player.canMove = true
+        logAction("collecting a coin")
         var audio = new Audio("assets/sounds/coin.wav")
         audio.play()
         Map.map.splice(Map.map.indexOf(element), 1)
         break
       case "e":
-        Player.canMove = false
-        element.attack()
-        break
       case "m":
-        Player.canMove = false
-        element.attack()
-        break
       case "n":
         Player.canMove = false
+        logAction("fighting an enemy")
         element.attack()
         break
       case "c":
         Player.canMove = false
+        logAction("facing a chest - need to open it!")
         break
       case "w":
         Player.canMove = false
+        logAction("bumping into a wall")
         break
       case "s":
         Player.canMove = true
+        logAction("healing")
         if (Player.health < 100) {
           Player.health += 20
         }
         break
       case "g":
-        victory = true
-        break
       case "i":
         victory = true
+        logAction("reaching the goal!")
         break
       default:
         if (Player.health < 100) {
           Player.health += 20
         }
         Player.canMove = true
+        logAction("walking forward")
         break
     }
 
