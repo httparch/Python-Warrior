@@ -10,6 +10,19 @@ It evaluates code input by the player (using eval), which can potentially introd
 It checks the player's next field for various elements (like coins, enemies, chests, etc.) and handles interactions accordingly.
  */
 
+// Listen for messages from the parent
+window.addEventListener("message", function (event) {
+  // Make sure to check the origin of the message for security
+  if (event.origin !== "http://localhost:5173/app") return // Replace with the actual origin
+
+  const data = event.data
+  console.log("here")
+  console.log(JSON.parse(data))
+  if (data.type === "parent-to-python-warrior" && data.data.level) {
+    level = data.data.level
+  }
+})
+
 function parse(str) {
   restart()
   var i = 0
@@ -152,47 +165,48 @@ If the player's health drops to zero, it restarts the game and plays a defeat so
 
 function check() {
   if (victory) {
-    var win = true;
+    var win = true
     Map.map.forEach(function (element) {
       if (element.name === "r" || element.name === "c") {
-        win = false;
+        win = false
       }
-    });
+    })
     if (win) {
-      clearInterval(loop);
-      if (level < 15) { // Change to level 15 as the last level
-        level++;
+      clearInterval(loop)
+      if (level < 15) {
+        // Change to level 15 as the last level
+        level++
         if (Math.random() > 0.5) {
-          var audio = new Audio("assets/sounds/win1.wav");
+          var audio = new Audio("assets/sounds/win1.wav")
         } else {
-          var audio = new Audio("assets/sounds/win2.wav");
+          var audio = new Audio("assets/sounds/win2.wav")
         }
-        audio.play();
+        audio.play()
 
-        document.getElementById("console-log-text").textContent = "";
-        console.log("You won!");
-        Player.health = 100;
-        Map.map.splice(0, Map.map.length);
+        document.getElementById("console-log-text").textContent = ""
+        console.log("You won!")
+        Player.health = 100
+        Map.map.splice(0, Map.map.length)
         // Show the level complete modal
-        UIkit.modal('#level-complete-modal').show();
+        UIkit.modal("#level-complete-modal").show()
       } else {
         // Last level (15) completed
-        document.getElementById("console-log-text").textContent = "";
-        console.log("Congratulations! You've finished the game!");
-        Player.health = 100;
-        Map.map.splice(0, Map.map.length);
+        document.getElementById("console-log-text").textContent = ""
+        console.log("Congratulations! You've finished the game!")
+        Player.health = 100
+        Map.map.splice(0, Map.map.length)
         // Show the game complete modal
-        UIkit.modal('#game-complete-modal').show();
+        UIkit.modal("#game-complete-modal").show()
       }
     } else {
-      console.log("Pick up all the coins!");
+      console.log("Pick up all the coins!")
     }
   }
   if (Player.health <= 0) {
-    restart();
-    console.log("Defeat!");
-    var audio = new Audio("assets/sounds/dead.wav");
-    audio.play();
+    restart()
+    console.log("Defeat!")
+    var audio = new Audio("assets/sounds/dead.wav")
+    audio.play()
   }
 }
 //restart():Clears the current game loop, resets the console log, and reloads the current map.
@@ -205,6 +219,7 @@ function restart() {
 // loadMap(skin): Loads hints and the level layout from text files based on the current level. It sets up the player and initializes the map display.
 function loadMap(skin) {
   // Load hints
+
   fetch(`assets/levels/${level}/hint.txt`)
     .then((response) => response.text())
     .then((responseText) => {

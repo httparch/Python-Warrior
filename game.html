@@ -190,7 +190,11 @@
         <h2 class="uk-modal-title">Level Complete!</h2>
         <p>Congratulations! You've successfully completed the level.</p>
         <p class="uk-text-right">
-          <button class="uk-button uk-button-default uk-modal-close" type="button" onclick="proceedToNextLevel()">
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+            onclick="proceedToNextLevel()"
+          >
             Proceed to Next Level
           </button>
         </p>
@@ -201,7 +205,11 @@
         <h2 class="uk-modal-title">Congratulations!</h2>
         <p>You've finished the game!</p>
         <p class="uk-text-right">
-          <button class="uk-button uk-button-default uk-modal-close" type="button" onclick="playAgain()">
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+            onclick="playAgain()"
+          >
             Play Again
           </button>
         </p>
@@ -234,19 +242,38 @@
 
       function onLevelComplete() {
         // Trigger the modal
-        UIkit.modal('#level-complete-modal').show();
+        UIkit.modal("#level-complete-modal").show()
       }
 
       function proceedToNextLevel() {
         // Logic to proceed to the next level
-        window.location.href = `game.html?level=${level}&skin=${skin}`; // Update the URL as needed
+        window.location.href = `game.html?level=${level}&skin=${skin}` // Update the URL as needed
+
+        var points
+
+        if (level % 2 == 0) {
+          points = 10
+        } else {
+          points = 5
+        }
+
+        window.parent.postMessage(
+          {
+            type: "python-warrior data",
+            pw_data: {
+              current_level: level,
+              bonus_points: points,
+            },
+          },
+          "*"
+        )
       }
 
       // Example function to simulate level completion
       function checkLevelCompletion() {
         // This is where you would check if the level is complete
         // For demonstration, we'll just call it directly
-        onLevelComplete();
+        onLevelComplete()
       }
 
       // Call this function when the level is completed
@@ -254,7 +281,7 @@
 
       function playAgain() {
         // Logic to restart the game from the first level
-        window.location.href = 'game.html?level=1&skin=' + skin; // Adjust the URL as needed
+        window.location.href = "game.html?level=1&skin=" + skin // Adjust the URL as needed
       }
     </script>
     <script src="assets/js/console.js"></script>
