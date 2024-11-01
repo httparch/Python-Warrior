@@ -67,7 +67,20 @@ function parse(str) {
         Player.canMove = false
         logAction("bumping into a wall")
         break
+      case "g":
+        victory = true
+        logAction("teleporting")
+        break
+      case "i":
+        victory = true
+        break
       case "s":
+        Player.canMove = true
+        if (Player.health < 100) {
+          Player.health += 20
+          logAction("healing")
+        }
+        break
       default:
         Player.canMove = true
         logAction("walking forward")
