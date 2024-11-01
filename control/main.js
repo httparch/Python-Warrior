@@ -23,6 +23,10 @@ window.addEventListener("message", function (event) {
   }
 })
 
+function logAction(action) {
+  console.log(`Player is ${action}`)
+}
+
 function parse(str) {
   restart()
   var i = 0
@@ -31,7 +35,7 @@ function parse(str) {
     Player.canPerformAction = true
 
     i++
-    console.log("ROUND " + i + " ------------------")
+    /*console.log("ROUND " + i + " ------------------")*/
 
     check()
 
@@ -43,55 +47,53 @@ function parse(str) {
           Player.health += 20
         }
         Player.canMove = true
+        logAction("collecting a coin")
         var audio = new Audio("assets/sounds/coin.wav")
         audio.play()
         Map.map.splice(Map.map.indexOf(element), 1)
         break
       case "e":
-        Player.canMove = false
-        element.attack()
-        break
       case "m":
-        Player.canMove = false
-        element.attack()
-        break
       case "n":
         Player.canMove = false
+        logAction("fighting an enemy")
         element.attack()
         break
       case "c":
         Player.canMove = false
+        logAction("facing a chest - need to open it!")
         break
       case "w":
         Player.canMove = false
+        logAction("bumping into a wall")
         break
       case "s":
         Player.canMove = true
+        logAction("healing")
         if (Player.health < 100) {
           Player.health += 20
         }
         break
       case "g":
-        victory = true
-        break
       case "i":
         victory = true
+        logAction("reaching the goal!")
         break
       default:
         if (Player.health < 100) {
           Player.health += 20
         }
         Player.canMove = true
+        logAction("walking forward")
         break
     }
 
     // Translate Python-like code to JavaScript
     try {
       var jsCommands = convertPythonToJS(str)
-      console.log("Translated code:", jsCommands)
       eval(jsCommands) // Execute the translated JavaScript commands
     } catch (error) {
-      console.error("Error executing command:", error)
+      console.log("There's something wrong with your code")
     }
 
     if (i > 25) {
@@ -101,42 +103,61 @@ function parse(str) {
 }
 
 function convertPythonToJS(pythonCode) {
-  // Replace Python if-else syntax with JavaScript equivalent
-  pythonCode = pythonCode.replace(/if\s+(.*):/g, "if ($1) {") // Handle if statements
-  pythonCode = pythonCode.replace(/elif\s+(.*):/g, "} else if ($1) {") // Handle elif statements
-  pythonCode = pythonCode.replace(/else:/g, "} else {") // Handle else statements
+  // Remove any extra whitespace and split into lines
+  const lines = pythonCode.trim().split('\n');
+  let jsCode = '';
+  let indentationLevels = [];
 
-  // Split code into lines to handle indentation and block structure
-  const lines = pythonCode.split("\n")
-  let outputCode = ""
-  let openBlocks = 0
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+    let currentIndentation = getIndentation(line);
+    line = line.trim();
 
-  lines.forEach((line) => {
-    const trimmedLine = line.trim()
+    // Skip empty lines
+    if (!line) continue;
 
-    // Add line to output
-    if (trimmedLine) {
-      // Only process non-empty lines
-      outputCode += line + "\n"
+    // Close previous blocks if indentation decreases
+    while (indentationLevels.length > 0 &&
+           currentIndentation < indentationLevels[indentationLevels.length - 1]) {
+      jsCode += '} ';
+      indentationLevels.pop();
+    }
 
-      // Detect block openings
-      if (trimmedLine.endsWith("{")) {
-        openBlocks++
-      }
-      // Detect closing blocks manually
-      if (trimmedLine.startsWith("}")) {
-        openBlocks--
+    // Convert Python if/elif/else to JavaScript
+    if (line.startsWith('if ')) {
+      line = line.replace(/if (.+):/, 'if ($1) {');
+      indentationLevels.push(currentIndentation);
+    }
+    else if (line.startsWith('elif ')) {
+      line = line.replace(/elif (.+):/, '} else if ($1) {');
+      // Don't push new indentation level for elif
+    }
+    else if (line.startsWith('else:')) {
+      line = line.replace('else:', '} else {');
+      // Don't push new indentation level for else
+    }
+    else {
+      // Add semicolon to the end of statements
+      if (!line.endsWith('{') && !line.endsWith('}')) {
+        line = line + ';';
       }
     }
-  })
 
-  // Ensure there are no extra closing braces
-  while (openBlocks > 0) {
-    outputCode += "}\n"
-    openBlocks--
+    jsCode += line + '\n';
   }
 
-  return outputCode
+  // Close any remaining open blocks
+  while (indentationLevels.length > 0) {
+    jsCode += '} ';
+    indentationLevels.pop();
+  }
+
+  return jsCode;
+}
+
+// Helper function to count indentation level
+function getIndentation(line) {
+  return line.search(/\S/);
 }
 
 /**

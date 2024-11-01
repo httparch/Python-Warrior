@@ -53,8 +53,10 @@
 
   function printToDiv() {
     var msg = Array.prototype.slice.call(arguments, 0).map(toString).join(' ')
-    var text = logTo.textContent
-    logTo.textContent = text + msg + '\n'
+    if (!msg.includes('Original Python:') && !msg.includes('Translated code:') && !msg.includes('Converted JavaScript:')) {
+        var text = logTo.textContent
+        logTo.textContent = text + msg + '\n'
+    }
   }
 
   function logWithCopy() {
@@ -129,7 +131,11 @@
   }
 
   window.addEventListener('error', function (err) {
-    printToDiv('EXCEPTION:', err.message + '\n  ' + err.filename, err.lineno + ':' + err.colno)
+    if (err.message.includes('eval')) {
+        printToDiv("There's something wrong with your code")
+    } else {
+        printToDiv('EXCEPTION:', err.message + '\n  ' + err.filename, err.lineno + ':' + err.colno)
+    }
   })
 })()
 
