@@ -68,21 +68,7 @@ function parse(str) {
         logAction("bumping into a wall")
         break
       case "s":
-        Player.canMove = true
-        logAction("healing")
-        if (Player.health < 100) {
-          Player.health += 20
-        }
-        break
-      case "g":
-      case "i":
-        victory = true
-        logAction("reaching the goal!")
-        break
       default:
-        if (Player.health < 100) {
-          Player.health += 20
-        }
         Player.canMove = true
         logAction("walking forward")
         break
@@ -91,7 +77,13 @@ function parse(str) {
     // Translate Python-like code to JavaScript
     try {
       var jsCommands = convertPythonToJS(str)
+      // Store initial health to check if healing occurred
+      const initialHealth = Player.health
       eval(jsCommands) // Execute the translated JavaScript commands
+      // If health increased, log the healing message
+      if (Player.health > initialHealth) {
+        logAction("healing")
+      }
     } catch (error) {
       console.log("There's something wrong with your code")
     }
