@@ -112,60 +112,82 @@ function parse(str) {
 }
 
 function convertPythonToJS(pythonCode) {
-  // Remove any extra whitespace and split into lines
   const lines = pythonCode.trim().split("\n")
   let jsCode = ""
-  let indentationLevels = []
+  let indentStack = [0]
+  let currentIndent = 0
 
+  // First pass: validate and process indentation
   for (let i = 0; i < lines.length; i++) {
-    let line = lines[i]
-    let currentIndentation = getIndentation(line)
-    line = line.trim()
+    const line = lines[i]
+    if (line.trim() === "") continue
 
-    // Skip empty lines
-    if (!line) continue
+    // Count leading spaces (convert tabs to 4 spaces first)
+    const processedLine = line.replace(/\t/g, "    ")
+    const indentLevel = processedLine.search(/\S/)
+    if (indentLevel === -1) continue
 
-    // Close previous blocks if indentation decreases
-    while (
-      indentationLevels.length > 0 &&
-      currentIndentation < indentationLevels[indentationLevels.length - 1]
-    ) {
+    const trimmedLine = processedLine.trim()
+
+    // Handle dedents
+    while (indentLevel < currentIndent) {
       jsCode += "} "
-      indentationLevels.pop()
+      indentStack.pop()
+      currentIndent = indentStack[indentStack.length - 1]
     }
 
-    // Convert Python if/elif/else to JavaScript
-    if (line.startsWith("if ")) {
-      line = line.replace(/if (.+):/, "if ($1) {")
-      indentationLevels.push(currentIndentation)
-    } else if (line.startsWith("elif ")) {
-      line = line.replace(/elif (.+):/, "} else if ($1) {")
-      // Don't push new indentation level for elif
-    } else if (line.startsWith("else:")) {
-      line = line.replace("else:", "} else {")
-      // Don't push new indentation level for else
-    } else {
-      // Add semicolon to the end of statements
-      if (!line.endsWith("{") && !line.endsWith("}")) {
-        line = line + ";"
+    // Validate indentation
+    if (indentLevel > currentIndent && indentLevel !== currentIndent + 4) {
+      throw new Error(
+        `Invalid indentation at line ${i + 1}. Expected ${
+          currentIndent + 4
+        } spaces but got ${indentLevel}`
+      )
+    }
+
+    // Process the line
+    if (trimmedLine.startsWith("if ")) {
+      const condition = trimmedLine.substring(3, trimmedLine.length - 1)
+      jsCode += `if (${condition}) {`
+      currentIndent = indentLevel
+      indentStack.push(currentIndent)
+    } else if (trimmedLine.startsWith("elif ")) {
+      if (indentStack.length <= 1) {
+        throw new Error(
+          `Invalid 'elif' at line ${
+            i + 1
+          }. 'elif' must follow an 'if' statement.`
+        )
       }
+      const condition = trimmedLine.substring(5, trimmedLine.length - 1)
+      jsCode += `} else if (${condition}) {`
+    } else if (trimmedLine.startsWith("else:")) {
+      if (indentStack.length <= 1) {
+        throw new Error(
+          `Invalid 'else' at line ${
+            i + 1
+          }. 'else' must follow an 'if' statement.`
+        )
+      }
+      jsCode += "} else {"
+    } else if (trimmedLine.startsWith("while ")) {
+      const condition = trimmedLine.substring(6, trimmedLine.length - 1)
+      jsCode += `while (${condition}) {`
+      currentIndent = indentLevel
+      indentStack.push(currentIndent)
+    } else {
+      jsCode += trimmedLine + ";"
     }
-
-    jsCode += line + "\n"
+    jsCode += "\n"
   }
 
-  // Close any remaining open blocks
-  while (indentationLevels.length > 0) {
+  // Close any remaining blocks
+  while (indentStack.length > 1) {
     jsCode += "} "
-    indentationLevels.pop()
+    indentStack.pop()
   }
 
   return jsCode
-}
-
-// Helper function to count indentation level
-function getIndentation(line) {
-  return line.search(/\S/)
 }
 
 /**
