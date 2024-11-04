@@ -2,7 +2,7 @@ var loop //Manages the game loop for processing turns.
 var level // Keeps track of the current level.
 var victory //A flag indicating if the player has reached the goal (the gate).
 var skin //Represents the visual style or theme for the game.
-
+var skill
 /**
  *
  * This function starts the game loop, processing player actions and interactions with the map every half second.
@@ -13,13 +13,24 @@ It checks the player's next field for various elements (like coins, enemies, che
 // Listen for messages from the parent
 window.addEventListener("message", function (event) {
   // Make sure to check the origin of the message for security
-  if (event.origin !== "http://localhost:5173/app") return // Replace with the actual origin
+  //if (event.origin !== "http://localhost:5173/app") return // Replace with the actual origin
 
   const data = event.data
   console.log("here")
   console.log(JSON.parse(data))
-  if (data.type === "parent-to-python-warrior" && data.data.level) {
-    level = data.data.level
+  if (
+    data.type === "parent-to-python-warrior" &&
+    data.data.level &&
+    data.data.skill
+  ) {
+    skill = data.data.skill
+    if (skill === "Beginner") {
+      level = `b` + data.data.level
+    } else if (skill === "Intermediate") {
+      level = `i` + data.data.level
+    } else {
+      level = data.data.level
+    }
   }
 })
 
@@ -113,60 +124,59 @@ function parse(str) {
 
 function convertPythonToJS(pythonCode) {
   // Remove any extra whitespace and split into lines
-  const lines = pythonCode.trim().split('\n');
-  let jsCode = '';
-  let indentationLevels = [];
+  const lines = pythonCode.trim().split("\n")
+  let jsCode = ""
+  let indentationLevels = []
 
   for (let i = 0; i < lines.length; i++) {
-    let line = lines[i];
-    let currentIndentation = getIndentation(line);
-    line = line.trim();
+    let line = lines[i]
+    let currentIndentation = getIndentation(line)
+    line = line.trim()
 
     // Skip empty lines
-    if (!line) continue;
+    if (!line) continue
 
     // Close previous blocks if indentation decreases
-    while (indentationLevels.length > 0 &&
-           currentIndentation < indentationLevels[indentationLevels.length - 1]) {
-      jsCode += '} ';
-      indentationLevels.pop();
+    while (
+      indentationLevels.length > 0 &&
+      currentIndentation < indentationLevels[indentationLevels.length - 1]
+    ) {
+      jsCode += "} "
+      indentationLevels.pop()
     }
 
     // Convert Python if/elif/else to JavaScript
-    if (line.startsWith('if ')) {
-      line = line.replace(/if (.+):/, 'if ($1) {');
-      indentationLevels.push(currentIndentation);
-    }
-    else if (line.startsWith('elif ')) {
-      line = line.replace(/elif (.+):/, '} else if ($1) {');
+    if (line.startsWith("if ")) {
+      line = line.replace(/if (.+):/, "if ($1) {")
+      indentationLevels.push(currentIndentation)
+    } else if (line.startsWith("elif ")) {
+      line = line.replace(/elif (.+):/, "} else if ($1) {")
       // Don't push new indentation level for elif
-    }
-    else if (line.startsWith('else:')) {
-      line = line.replace('else:', '} else {');
+    } else if (line.startsWith("else:")) {
+      line = line.replace("else:", "} else {")
       // Don't push new indentation level for else
-    }
-    else {
+    } else {
       // Add semicolon to the end of statements
-      if (!line.endsWith('{') && !line.endsWith('}')) {
-        line = line + ';';
+      if (!line.endsWith("{") && !line.endsWith("}")) {
+        line = line + ";"
       }
     }
 
-    jsCode += line + '\n';
+    jsCode += line + "\n"
   }
 
   // Close any remaining open blocks
   while (indentationLevels.length > 0) {
-    jsCode += '} ';
-    indentationLevels.pop();
+    jsCode += "} "
+    indentationLevels.pop()
   }
 
-  return jsCode;
+  return jsCode
 }
 
 // Helper function to count indentation level
 function getIndentation(line) {
-  return line.search(/\S/);
+  return line.search(/\S/)
 }
 
 /**
