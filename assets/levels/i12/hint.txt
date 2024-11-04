@@ -1,0 +1,1 @@
+<span style="color: #00008B;">This is a bit tricky, but you've got this! Get pass <br>the wall ("w"), snake ("n"), and scorpion ("m").</span>

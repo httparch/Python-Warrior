@@ -1,2 +1,2 @@
-There's three of them now! You should be careful.<br>
-As long as you apply what you have learned so far, you should be able to defeat them.
+<span style="color: #00008B;">There's three of them now! You should be careful, <br> regenerating is not enough.</span><br><br>
+Use <span style="color: green;">Player.getHealth() <,>,= "number" </span> to check the player’s health and <span style="color: green;">Player.setHealth("number")</span> to set the player’s health to a certain number.

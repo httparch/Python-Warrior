@@ -1,0 +1,1 @@
+Use Player.attack() to defeat the enemy. Make sure to use <code>Player.getHealth() < or > or = "number"</code> and <code>Player.setHealth("number")</code> to heal.

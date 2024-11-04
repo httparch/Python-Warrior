@@ -1,0 +1,1 @@
+Use Player.attack() for both scorpions ("m") and snakes ("n"), Player.skipWall() to bypass the walls.

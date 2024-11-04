@@ -1,0 +1,6 @@
+The value assigned for the monster is "e".<br><br>
+Here’s a basic decision-making structure:<br><br>
+if (function() == "_"):<br>
+    function()<br>
+else:<br>
+    function()

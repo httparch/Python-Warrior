@@ -1,1 +1,1 @@
-Player.walk(); to walk
+Player.walk() to walk

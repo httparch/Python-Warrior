@@ -1,0 +1,2 @@
+The value assigned for chest is "c".<br><br>
+Turn left then walk to open the chest.

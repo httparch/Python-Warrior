@@ -1,0 +1,2 @@
+<span style="color: #00008B;">You've found the scopion's lair! You should be careful, <br> regenerating is not enough.</span><br><br>
+Use <span style="color: green;">Player.getHealth() < or > or = "number" </span> to check the player’s health and <span style="color: green;">Player.setHealth("number")</span> to set the player’s health to a certain number.

@@ -1,0 +1,1 @@
+Use Player.openChest() to open Chest ("c"), and Player.attack() to fight the spider("e").

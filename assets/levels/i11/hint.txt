@@ -1,0 +1,2 @@
+<span style="color: #00008B;">You've found another chest, this time, it's guarded by giant snakes("n").</span><br><br>
+Use <span style="color: green;">Player.attack()</span> to defeat them.
