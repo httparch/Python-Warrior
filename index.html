@@ -176,7 +176,6 @@
       function startGame() {
         if (receivedLevel !== null) {
           // Redirect or initialize your game here with the level and skin
-          console.log('here'+receivedLevel)
           window.location.href = `game.html?level=${receivedLevel}&skin=warrior`;
         } else {
           console.log("Level data not received yet.");
