@@ -1,0 +1,2 @@
+<span style="color: #00008B;">Look! You've found a chest, but you need to get pass <br>that scorpion ("m") first.</span><br><br>
+Use <span style="color: green;">Player.openChest()</span> to open the chest ("c").

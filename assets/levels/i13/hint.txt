@@ -1,0 +1,2 @@
+<span style="color: #00008B;">The portal is behind you, this seems to be an easy path as<br> the snake guarding it is not paying attention.</span>
+

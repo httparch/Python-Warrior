@@ -1,0 +1,2 @@
+<span style="color: #00008B;">Seems like it's not just spiders anymore, there's a wall<br> blocking your path too.</span><br><br>
+Use <span style="color: green;">Player.skipWall()</span> to get past the wall("w").

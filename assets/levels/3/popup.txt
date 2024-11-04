@@ -1,1 +1,1 @@
-Player.walk(); to walk
+Just walk forward - you'll automatically collect coins.

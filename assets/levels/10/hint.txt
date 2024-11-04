@@ -1,2 +1,2 @@
-Well done! You've made passed the scorpions.<br>
-Looks like you've found another stash of gold.
+<span style="color: #00008B;">Well done! You've made passed the scorpions.<br>
+Looks like you've found another stash of gold.</span>

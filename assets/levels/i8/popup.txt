@@ -1,0 +1,1 @@
+Use Player.attack() to defeat the enemy. Make sure to heal yourself after each battle.

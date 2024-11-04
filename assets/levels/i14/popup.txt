@@ -1,0 +1,3 @@
+Use Player.attack() for snake ("m") and scorpion ("m"), Player.skipWall() to walk through the wall ("w").<br> <br>
+You need to use a Nested if-else statement (if-else inside an if-else).
+

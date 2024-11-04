@@ -1,2 +1,5 @@
-Phew, you made it. Looks like you've found some gold!<br>
-Remember what you have learned so far to make it to the exit.
+<span style="color: #00008B;">You made it! Looks like the gold coins are leading you somewhere.<br><br></span>
+Remember what you have learned to follow the gold coins.
+
+
+

@@ -1,2 +1,5 @@
-Looks like the enemy has switched places with you!<br>
-To turn around, use the <code>Player.setDir("LEFT")</code> or <code>Player.setDir("RIGHT")</code> functions.
+<span style="color: #00008B;">Looks like some walls are blocking your path.</span><br><br>
+Use <span style="color: green;">Player.skipWall()</span> to walk through the walls.<br>
+Remember to apply what you have learned so far.
+
+

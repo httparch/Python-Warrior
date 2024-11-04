@@ -1,0 +1,1 @@
+<span style="color: #00008B;">A wall ("w") and a snake ("n") are blocking your path. Use what you've learned to get past them.</span>

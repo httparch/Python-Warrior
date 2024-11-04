@@ -1,0 +1,1 @@
+Use Player.attack() for both scorpions ("m") and snakes ("n"). Use Player.getHealth() to check your health and Player.setHealth() to heal yourself.

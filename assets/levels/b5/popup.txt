@@ -1,0 +1,8 @@
+Since you would need two conditions, you must use elif (else if) statement.<br><br>
+
+if (function() == "_"):<br>
+    function()<br>
+elif (function() == "_"):<br>
+    function()<br>
+else:<br>
+    function()<br>

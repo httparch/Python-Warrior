@@ -1,0 +1,1 @@
+Use an if else statement to get pass the wall ("w") and kill the snake ("n").

@@ -1,0 +1,1 @@
+In else if stetment, use Player.openChest() to open chest ("w"), and Player.attack() to fight the scorpion ("m").

@@ -1,0 +1,2 @@
+<span style="color: #00008B;">Look! A chest behind you, turn around to open it.</span><br><br>
+Use <span style="color: green;">Player.openChest()</span> to open the chest and use <span style="color: green;">Player.setDir("LEFT")</span> to turn around.

@@ -191,8 +191,14 @@
         console.log('Received data:', data);
 
         // Check if message type and data are correct
-        if (data.type === 'parent-to-python-warrior' && data.level) {
-          receivedLevel = data.level; // Store the level data
+        if (data.type === 'parent-to-python-warrior' && data.level && data.skill) {
+           if(data.skill === 'Beginner'){
+            receivedLevel = `b`+data.level
+           }else if(data.skill === 'Intermediate'){
+            receivedLevel = `i`+data.level
+           }else{
+            receivedLevel = data.level
+           }
           console.log('Level received:', receivedLevel);
         }
       });

@@ -1,0 +1,2 @@
+<span style="color: #00008B;">You've found the scopion's lair! You should be careful, <br> regenerating is not enough.</span><br><br>
+
