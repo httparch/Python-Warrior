@@ -39,7 +39,7 @@ var Player = (function () {
   //Logs messages  if certain conditions are not met.
   module.walk = function () {
     if (!this.canPerformAction) {
-      console.log("You can only run one promotion at a time")
+      console.log("You can only run one action command at a time")
       return
     }
     this.canPerformAction = false
@@ -172,7 +172,7 @@ var Player = (function () {
   // and dealing damage to an enemy in that direction if the player can perform an action.
   module.attack = function () {
     if (!this.canPerformAction) {
-      console.log("You can only run one promotion at a time")
+      console.log("You can only run one action command at a time")
       return
     }
     this.canPerformAction = false
