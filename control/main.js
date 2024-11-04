@@ -2,7 +2,7 @@ var loop //Manages the game loop for processing turns.
 var level // Keeps track of the current level.
 var victory //A flag indicating if the player has reached the goal (the gate).
 var skin //Represents the visual style or theme for the game.
-var skill
+
 /**
  *
  * This function starts the game loop, processing player actions and interactions with the map every half second.
@@ -13,24 +13,13 @@ It checks the player's next field for various elements (like coins, enemies, che
 // Listen for messages from the parent
 window.addEventListener("message", function (event) {
   // Make sure to check the origin of the message for security
-  //if (event.origin !== "http://localhost:5173/app") return // Replace with the actual origin
+  if (event.origin !== "http://localhost:5173/app") return // Replace with the actual origin
 
   const data = event.data
   console.log("here")
   console.log(JSON.parse(data))
-  if (
-    data.type === "parent-to-python-warrior" &&
-    data.data.level &&
-    data.data.skill
-  ) {
-    skill = data.data.skill
-    if (skill === "Beginner") {
-      level = `b` + data.data.level
-    } else if (skill === "Intermediate") {
-      level = `i` + data.data.level
-    } else {
-      level = data.data.level
-    }
+  if (data.type === "parent-to-python-warrior" && data.data.level) {
+    level = data.data.level
   }
 })
 
