@@ -10,16 +10,26 @@ It evaluates code input by the player (using eval), which can potentially introd
 It checks the player's next field for various elements (like coins, enemies, chests, etc.) and handles interactions accordingly.
  */
 
-// Listen for messages from the parent
 window.addEventListener("message", function (event) {
   // Make sure to check the origin of the message for security
-  if (event.origin !== "http://localhost:5173/app") return // Replace with the actual origin
+  // if (event.origin !== "http://localhost:5173/app") return; // Replace with the actual origin
 
   const data = event.data
-  console.log("here")
-  console.log(JSON.parse(data))
-  if (data.type === "parent-to-python-warrior" && data.data.level) {
-    level = data.data.level
+  console.log("Received data:", data)
+
+  // Check if message type and data are correct
+  if (data.type === "parent-to-python-warrior" && data.level && data.skill) {
+    receivedLevel = data.level
+    receivedSkill = data.skill
+    /*
+     if(data.skill === 'Beginner'){
+      receivedLevel = `b`+data.level
+     }else if(data.skill === 'Intermediate'){
+      receivedLevel = `i`+data.level
+     }else{
+      receivedLevel = data.level
+     }*/
+    console.log("Level received:", receivedLevel, receivedSkill)
   }
 })
 
@@ -204,37 +214,50 @@ function check() {
         win = false
       }
     })
+    console.log("current:" + level) // Output example: 5
+
+    if (!win) {
+      console.log("Pick up all the coins!")
+    }
+
     if (win) {
       clearInterval(loop)
+
+      if (isNaN(level)) level = parseInt(level.slice(1))
+
       if (level < 15) {
-        // Change to level 15 as the last level
+        // Extract the number part of the level and increment it
         level++
-        if (Math.random() > 0.5) {
-          var audio = new Audio("assets/sounds/win1.wav")
-        } else {
-          var audio = new Audio("assets/sounds/win2.wav")
-        }
+        console.log("before:", level)
+        if (receivedSkill === "Beginner") level = `b` + level
+        if (receivedSkill === "Intermediate") level = `i` + level
+        console.log("mainjs_level:", level) // Updated level
+
+        // Play a random win sound
+        var audio = new Audio(
+          Math.random() > 0.5
+            ? "assets/sounds/win1.wav"
+            : "assets/sounds/win2.wav"
+        )
         audio.play()
 
         document.getElementById("console-log-text").textContent = ""
         console.log("You won!")
         Player.health = 100
         Map.map.splice(0, Map.map.length)
-        // Show the level complete modal
         UIkit.modal("#level-complete-modal").show()
       } else {
-        // Last level (15) completed
         document.getElementById("console-log-text").textContent = ""
         console.log("Congratulations! You've finished the game!")
         Player.health = 100
         Map.map.splice(0, Map.map.length)
-        // Show the game complete modal
+
+        console.log("check:", level) // Output example: 15
         UIkit.modal("#game-complete-modal").show()
       }
-    } else {
-      console.log("Pick up all the coins!")
     }
   }
+
   if (Player.health <= 0) {
     restart()
     console.log("Defeat!")
@@ -242,6 +265,7 @@ function check() {
     audio.play()
   }
 }
+
 //restart():Clears the current game loop, resets the console log, and reloads the current map.
 function restart() {
   clearInterval(loop)
