@@ -247,21 +247,28 @@
 
       function proceedToNextLevel() {
         // Logic to proceed to the next level
-        window.location.href = `game.html?level=${level}&skin=${skin}` // Update the URL as needed
+        let number
 
+        window.location.href = `game.html?level=${level}&skin=${skin}` // Update the URL as needed
+        console.log("check", level)
+        if (isNaN(level)) {
+          number = parseInt(level.slice(1))
+        }
+
+        let numericalLevel = level
         var points
 
-        if (level % 2 == 0) {
+        if (number % 2 == 0) {
           points = 10
         } else {
           points = 5
         }
-
+        console.log("to be received:", numericalLevel, points)
         window.parent.postMessage(
           {
             type: "python-warrior data",
             pw_data: {
-              current_level: level,
+              current_level: isNaN(level) ? number : parseInt(level),
               bonus_points: points,
             },
           },

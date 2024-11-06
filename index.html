@@ -175,8 +175,14 @@
       // Function to start the game with the stored level
       function startGame() {
         if (receivedLevel !== null) {
-          // Redirect or initialize your game here with the level and skin
-          window.location.href = `game.html?level=${receivedLevel}&skin=warrior`;
+          if(receivedSkill === 'Beginner'){
+            window.location.href = `game.html?level=b${receivedLevel}&skin=warrior`;
+          }else if(receivedSkill === 'Intermediate'){
+            window.location.href = `game.html?level=i${receivedLevel}&skin=warrior`;
+          }else{
+            window.location.href = `game.html?level=${receivedLevel}&skin=warrior`;
+          }
+
         } else {
           console.log("Level data not received yet.");
         }
