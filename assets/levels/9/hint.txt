@@ -1,2 +1,5 @@
 <span style="color: #00008B;">There's three of them now! You should be careful, <br> regenerating is not enough.</span><br><br>
-Use <span style="color: green;">Player.getHealth() <,>,= "number" </span> to check the player’s health and <span style="color: green;">Player.setHealth("number")</span> to set the player’s health to a certain number.
+Use Player.getHealth() < or > or = x </span> to check the player’s health and <span style="color: green;">Player.setHealth(100)</span> to set the player’s health to full.<br><br>
+
+<span style="font-style: italic; font-size: 10px; color: #4c4c4c;">Player.getHealth() </>/= x checks the player’s current health status, replace x with a number. <br>
+Player.setHealth(100): Sets the player’s health to a 100.</span>
