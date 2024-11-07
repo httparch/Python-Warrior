@@ -1,4 +1,7 @@
-<span style="color: #00008B;">A spider blocks your path! You'll need to fight it. <br> Don't worry, you have the ability to regenerate on your own.</span><br><br>
-Use <span style="color: green;">Player.getNext() == "_" </span> for your hero to detect the enemy in front of it, and <span style="color: green;">Player.attack()</span> to attack the enemy.
+<span style="color: #00008B;">A spider("e) blocks your path! You'll need to fight it. <br> Don't worry, you have the ability to regenerate on your own.</span><br><br>
+Use <span style="color: green;">Player.getNext() == "_" </span> for your hero to detect the enemy in front of it, and <span style="color: green;">Player.attack()</span> to attack the enemy.<br><br>
+
+<span style="font-style: italic; font-size: 10px; color: #4c4c4c;">Using if-else statement,<br>
+Player.getNext() == "x" checks the object directly in front of the player. Replace "x" with specific objects such as "e" (spider) to know what lies ahead. <br> Player.attack() function triggers an attack action from the player. </span>
 
 
