@@ -15,7 +15,7 @@ window.addEventListener("message", function (event) {
   // if (event.origin !== "http://localhost:5173/app") return; // Replace with the actual origin
 
   const data = event.data
-  console.log("Received data:", data)
+  // console.log("Received data:", data)
 
   // Check if message type and data are correct
   if (data.type === "parent-to-python-warrior" && data.level && data.skill) {
@@ -29,7 +29,7 @@ window.addEventListener("message", function (event) {
      }else{
       receivedLevel = data.level
      }*/
-    console.log("Level received:", receivedLevel, receivedSkill)
+    // console.log("Level received:", receivedLevel, receivedSkill)
   }
 })
 
@@ -214,7 +214,7 @@ function check() {
         win = false
       }
     })
-    console.log("current:" + level) // Output example: 5
+    // console.log("current:" + level) // Output example: 5
 
     if (!win) {
       console.log("Pick up all the coins!")
@@ -228,10 +228,10 @@ function check() {
       if (level < 15) {
         // Extract the number part of the level and increment it
         level++
-        console.log("before:", level)
+        // console.log("before:", level)
         if (receivedSkill === "Beginner") level = `b` + level
         if (receivedSkill === "Intermediate") level = `i` + level
-        console.log("mainjs_level:", level) // Updated level
+        // console.log("mainjs_level:", level) // Updated level
 
         // Play a random win sound
         var audio = new Audio(
@@ -252,7 +252,7 @@ function check() {
         Player.health = 100
         Map.map.splice(0, Map.map.length)
 
-        console.log("check:", level) // Output example: 15
+        // console.log("check:", level) // Output example: 15
         UIkit.modal("#game-complete-modal").show()
       }
     }
