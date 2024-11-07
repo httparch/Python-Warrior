@@ -1,4 +1,4 @@
-<span style="color: #00008B;">Seems like it's not just spiders anymore, there's a wall<br> blocking your path too.</span><br><br>
+<span style="color: #00008B;">Seems like it's not just spiders anymore, there's a wall("w")<br> blocking your path too.</span><br><br>
 Use <span style="color: green;">Player.skipWall()</span> to get past the wall("w").<br><br>
 
 <span style="font-style: italic; font-size: 10px; color: #4c4c4c;">Player.skipWall() is a function that allows the player to bypass walls that block the path.</span>
