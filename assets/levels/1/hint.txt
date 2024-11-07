@@ -2,6 +2,9 @@
 Your journey to save the princess begins.</span><br><br>
 
 First, let's learn how to walk forward.<br>
-Use <span style="color: green;">Player.walk()</span> to get to the portal.
+Use <span style="color: green;">Player.walk()</span> to get to the portal. <br><br>
+
+<span style="font-style: italic; font-size: 10px; color: #4c4c4c;">The warrior is an instance of the Player class. It is able to interact with <br> the game environment using various functions provided by this class to move.
+Player.walk() function makes the player move forward continuously. </span>
 
 
