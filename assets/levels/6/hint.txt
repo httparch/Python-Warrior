@@ -1,5 +1,7 @@
-<span style="color: #00008B;">Looks like some walls are blocking your path.</span><br><br>
+<span style="color: #00008B;">Looks like some walls ("w") are blocking your path.</span><br><br>
 Use <span style="color: green;">Player.skipWall()</span> to walk through the walls.<br>
-Remember to apply what you have learned so far.
+Remember to apply what you have learned so far.<br><br>
+
+<span style="font-style: italic; font-size: 10px; color: #4c4c4c;">Player.skipWall() is a function that allows the player to bypass walls that block the path.</span>
 
 
