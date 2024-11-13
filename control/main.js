@@ -115,7 +115,7 @@ function parse(str) {
       console.log("There's something wrong with your code")
     }
 
-    if (i > 25) {
+    if (i > 50) {
       clearInterval(loop)
     }
   }, 500)
