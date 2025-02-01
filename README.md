@@ -4,6 +4,7 @@
 <p align="center">
   <img src="assets/images/Screenshot 2025-02-01 125724.png" alt="Image 1" width="60%" />
 </p>
+
 ## Player Class
 
 This class represents the Player and provides several methods to control its behavior and interaction within a game environment.
