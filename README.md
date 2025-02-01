@@ -3,7 +3,6 @@
 
 <p align="center">
   <img src="assets/images/Screenshot 2025-02-01 125724.png" alt="Image 1" width="60%" />
-  <img src="assets/images/Screenshot 2025-02-01 130054.png" alt="Image 2" width="50%" />
 </p>
 ## Player Class
 
