@@ -2,8 +2,8 @@
   - Python Warrior cannot be played without being connected to CodeHub, as it relies on data stored within CodeHub for proper functionality.
 
 <p align="center">
-  <img src="assets/images/Screenshot 2025-02-01 125724.png" alt="Image 1" width="45%" />
-  <img src="assets/images/Screenshot 2025-02-01 130054.png" alt="Image 2" width="45%" />
+  <img src="assets/images/Screenshot 2025-02-01 125724.png" alt="Image 1" width="200px" />
+  <img src="assets/images/Screenshot 2025-02-01 130054.png" alt="Image 2" width="200px" />
 </p>
 ## Player Class
 
